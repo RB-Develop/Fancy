@@ -1,20 +1,20 @@
 #ifndef COMPONENT
 #define COMPONENT
 
-class Composite;
-
 class Component
 {
 public:
-	Component(Composite* parent);
 	virtual ~Component() = 0;
+
+	const char* getName() { return _name; }
 
 	virtual void init() {};
 	virtual void update() {};
-	virtual void draw() {};
-	virtual void handleMessage(unsigned int message, void* data = 0) { };
+	virtual void handleMessage(unsigned int, void* data = 0) { };
 protected:
-	Composite* parent;
+	Component(const char*);
+private:
+	const char* _name;
 };
 
 

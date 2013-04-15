@@ -15,7 +15,7 @@
     <ClInclude Include="..\include\Engine\CameraMover.h" />
     <ClInclude Include="..\include\Engine\Component.h" />
     <ClInclude Include="..\include\Engine\Composite.h" />
-    <ClInclude Include="..\include\Engine\Entity.h" />
+    <ClInclude Include="..\include\Engine\GameObject.h" />
     <ClInclude Include="..\include\Engine\INetworkListener.h" />
     <ClInclude Include="..\include\Engine\Input.h" />
     <ClInclude Include="..\include\Engine\InputManager.h" />
@@ -43,7 +43,7 @@
     <ProjectGuid>{449E530E-8A1D-42BC-B6A9-11F4A23D2BD0}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>StellaIncognita</RootNamespace>
-    <ProjectName>Stella Incognita Engine</ProjectName>
+    <ProjectName>Fancy Engine</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
