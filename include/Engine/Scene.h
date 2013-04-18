@@ -1,15 +1,4 @@
-#include "Composite.h"
-#include "Entity.h"
-#include <Irrlicht\irrlicht.h>
-
-
-#ifndef SCENE
-#define SCENE
-
-using namespace core;
-using namespace scene;
-
-class Scene : public Composite
+class Scene
 {
 public:
 	Scene();
@@ -23,7 +12,5 @@ public:
 	};
 
 	State state;
-	ISceneManager* sceneManager;
 };
 
-#endif

@@ -27,7 +27,6 @@ public:
 	GameObject(Composite*, scene::ISceneManager *smgr = NULL);
 	~GameObject();
 
-	// Methods
 	virtual void update();
 	virtual void createNode(io::path modelPath);
 };

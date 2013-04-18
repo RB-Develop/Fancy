@@ -1,6 +1,6 @@
 #include <Engine\Scene.h>
 
-Scene::Scene() : Composite(NULL)
+Scene::Scene()
 {
 	// Set the state
 	state = LOADING;
@@ -11,5 +11,4 @@ Scene::Scene() : Composite(NULL)
 
 Scene::~Scene()
 {
-	Composite::~Composite();
 }

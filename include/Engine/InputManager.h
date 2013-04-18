@@ -75,8 +75,8 @@ public:
 
 	bool OnEvent(const SEvent &event);
 protected:
-	ButtonState keys[NUMBER_OF_KEYS];
-	ButtonState mouse[NUMBER_OF_MOUSE_BUTTONS];
+	bool keys[NUMBER_OF_KEYS];
+	bool mouse[NUMBER_OF_MOUSE_BUTTONS];
 	MouseData mouseData;
 	ProcessEventState processState;
 

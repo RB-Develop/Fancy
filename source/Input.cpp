@@ -25,7 +25,6 @@ Input::Input(void)
 	//std::cout << "Input made"<<std::endl;
 	//for (u32 i=0; i<KEY_KEY_CODES_COUNT; ++i)
 			//KeyIsDown[i] = false;
-
 }
 
 

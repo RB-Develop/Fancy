@@ -1,28 +1,31 @@
 #include <Engine\Camera.h>
-#include <Engine\CameraMover.h>
 
-
-Camera::Camera(Composite* parent, vector3df position, vector3df lookAt):Entity(parent)
+Camera::Camera(ISceneManager* smgr)
 {
-	if (parent != NULL && dynamic_cast<Entity*>(parent) != NULL)
-		parentIsEntity = true;
-	else parentIsEntity = false; 
-	addComponent(new CameraMover(this));
+	this->smgr = smgr;
 }
 
-irr::scene::ICameraSceneNode* Camera::getCameraNode()
+ICameraSceneNode* Camera::getCameraNode()
 {
-	return ((irr::scene::ICameraSceneNode*)(node));
+	return cameraNode;
 }
 
-Entity* Camera::getEntity()
+void Camera::createCamera(CameraType type, ISceneNode* parent)
 {
-	if (parentIsEntity)
-		return (Entity*)(parent);
-	else return NULL;
+	switch(type)
+	{
+	case(FIRST_PERSON):
+		smgr->addCameraSceneNodeFPS(parent, 10.0f);
+		break;
+	case(THIRD_PERSON):
+		smgr->addCameraSceneNode(parent);
+		break;
+	case(MAYA):
+		smgr->addCameraSceneNodeMaya(parent);
+		break;
+	}
 }
 
 Camera::~Camera()
 {
-	Entity::~Entity();
 }

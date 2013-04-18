@@ -1,19 +1,28 @@
-#include "Entity.h"
 #ifndef CAMERA
 #define CAMERA
 
+#include <Irrlicht/irrlicht.h>
+
 using namespace irr;
 using namespace core;
+using namespace scene;
 
-class Camera : public Entity
+class Camera
 {
-public:
-	Camera(Composite* parent, vector3df position = vector3df(0, 0, 0), vector3df lookAt = vector3df(0, 0, 100));
-	virtual ~Camera();
-	scene::ICameraSceneNode* getCameraNode();
-	Entity* getEntity();
-	bool parentIsEntity;
 private:
+	ISceneManager* smgr;
+	ICameraSceneNode* cameraNode;
+public:
+	enum CameraType {
+		THIRD_PERSON,
+		FIRST_PERSON,
+		MAYA
+	};
+
+	Camera(ISceneManager*);
+	~Camera();
+	void createCamera(CameraType, ISceneNode* = NULL);
+	ICameraSceneNode* getCameraNode();
 };
 
 

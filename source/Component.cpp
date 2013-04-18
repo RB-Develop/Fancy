@@ -1,9 +1,8 @@
 #include <Engine\Component.h>
 #include <Engine\Composite.h>
 
-Component::Component(Composite* parent)
+Component::Component(const char* name)
 {
-	this->parent = parent;
 }
 
 Component::~Component()

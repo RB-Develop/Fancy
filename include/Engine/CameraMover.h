@@ -1,8 +1,8 @@
-#include "Component.h"
-#include "Camera.h"
-
 #ifndef CAMERAMOVER
 #define CAMERAMOVER
+
+#include "Component.h"
+#include "Camera.h"
 
 class CameraMover :	public Component
 {

@@ -1,6 +1,6 @@
 #include <Engine\Composite.h>
 
-Composite::Composite(Composite* parent):Component(parent)
+Composite::Composite(const char* name):Component(name)
 {
 }
 
@@ -16,10 +16,12 @@ Composite::~Composite()
 
 void Composite::handleMessage(unsigned int message, void* data)
 {
-	for (std::list<Component*>::iterator i = components.begin(); i != components.end(); ++i)
+	std::list<Component*>::iterator i;
+	for (i = components.begin(); i != components.end(); ++i)
 	{
 		(*i)->handleMessage(message, data);
 	}
+	delete *i;
 }
 
 void Composite::update()
@@ -27,14 +29,6 @@ void Composite::update()
 	for (std::list<Component*>::iterator i = components.begin(); i != components.end(); ++i)
 	{
 		(*i)->update();
-	}
-}
-
-void Composite::draw()
-{
-	for (std::list<Component*>::iterator i = components.begin(); i != components.end(); ++i)
-	{
-		(*i)->draw();
 	}
 }
 
