@@ -4,3 +4,5 @@
 #include "Input.h"
 #include "InputManager.h"
 #include "Scene.h"
+#include "SceneManager.h"
+#include "PrimitiveComponent.h"

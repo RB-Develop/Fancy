@@ -1,16 +1,17 @@
-class Scene
+#ifndef FANCY_SCENE
+#define FANCY_SCENE
+
+#include <Engine/Composite.h>
+
+class Scene : public Composite
 {
 public:
-	Scene();
-	~Scene(void);
-
-	enum State{
-		LOADING,
-		PLAYING,
-		PAUSED,
-		EXITING
-	};
-
-	State state;
+	virtual void update() = 0;
+	virtual void handleMessage(unsigned int) {};
+	virtual void addComponent(Component*);
+	virtual void removeComponent(Component*);
+protected:
+	Scene(const char*);
 };
 
+#endif

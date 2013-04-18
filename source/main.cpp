@@ -1,7 +1,8 @@
 #include <Irrlicht/irrlicht.h>
 #include <Engine/FancyEngine.h>
 
-#include "CAppReceiver.cpp"
+#include "MainMenu.cpp"
+#include "ExtraScene.cpp"
 
 using namespace irr;
 using namespace core;
@@ -23,16 +24,19 @@ int main()
 	IGUIEnvironment* guienv = device->getGUIEnvironment();
 	ISceneManager* smgr = device->getSceneManager();
 
-	Camera* camera = new Camera(smgr);
-	camera->createCamera(Camera::FIRST_PERSON);
-	smgr->addCubeSceneNode(10.0f, NULL, 1, vector3df(10, 0, 10));
-
+	SceneManager* sceneManager = new SceneManager(smgr);
+	sceneManager->setActiveScene(new MainMenu(smgr));
+		
 	while (device->run())
 	{
 		if (appReceiver.isKeyboardButtonDown(KEY_ESCAPE))
 		{
 			device->closeDevice();
 			return 0;
+		}
+		if (appReceiver.isKeyboardButtonDown(KEY_SPACE))
+		{
+			sceneManager->setActiveScene(new ExtraScene(smgr));
 		}
 		if (device->isWindowActive())
         {

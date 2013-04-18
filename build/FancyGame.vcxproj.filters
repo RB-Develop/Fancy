@@ -18,7 +18,10 @@
     <ClCompile Include="..\source\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\CAppReceiver.cpp">
+    <ClCompile Include="..\source\MainMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ExtraScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

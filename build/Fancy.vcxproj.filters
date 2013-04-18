@@ -13,51 +13,66 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Component">
+      <UniqueIdentifier>{292fd9bb-f4a8-4d15-a857-c0f14309001e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Component\Base">
+      <UniqueIdentifier>{7d590869-0bd0-498a-86d6-3d0d169dd85c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Composite">
+      <UniqueIdentifier>{4dbc79fb-38a9-43b7-b80e-fcd9b88a19d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Composite\Base">
+      <UniqueIdentifier>{2118a1cc-8f24-48c0-8698-aedcd32eb3a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Component">
+      <UniqueIdentifier>{e4089f61-37e5-4ed5-b15d-2cb2170ee86f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Engine\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\Engine\Component.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\Engine\Composite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\Engine\Input.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\Engine\InputManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\Engine\Scene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\Engine\GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\include\Engine\FancyEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\Engine\SceneManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Engine\Component.h">
+      <Filter>Header Files\Component\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Engine\Composite.h">
+      <Filter>Header Files\Composite\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Engine\Scene.h">
+      <Filter>Header Files\Composite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Engine\MeshComponent.h">
+      <Filter>Header Files\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Engine\PrimitiveComponent.h">
+      <Filter>Header Files\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\source\Camera.cpp">
+    <ClCompile Include="..\source\Engine\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Component.cpp">
+    <ClCompile Include="..\source\Engine\InputManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Composite.cpp">
+    <ClCompile Include="..\source\Engine\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Input.cpp">
+    <ClCompile Include="..\source\Engine\SceneManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\InputManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Scene.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\source\Engine\PrimitiveComponent.cpp">
+      <Filter>Source Files\Component</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

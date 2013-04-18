@@ -67,8 +67,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\source\CAppReceiver.cpp" />
+    <ClCompile Include="..\source\ExtraScene.cpp" />
     <ClCompile Include="..\source\main.cpp" />
+    <ClCompile Include="..\source\MainMenu.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
