@@ -1,22 +1,25 @@
-#include <Engine\Camera.h>
+#include <Engine\CameraComponent.h>
 
-Camera::Camera(ISceneManager* smgr)
+using namespace irr;
+using namespace scene;
+
+CameraComponent::CameraComponent(ISceneManager* smgr) : Component("Camera")
 {
 	this->smgr = smgr;
 }
 
-Camera::~Camera()
+CameraComponent::~CameraComponent()
 {
 	smgr->addToDeletionQueue(cameraNode);
 	smgr = NULL;
 }
 
-ICameraSceneNode* Camera::getCameraNode()
+ICameraSceneNode* CameraComponent::getCameraNode()
 {
 	return cameraNode;
 }
 
-void Camera::createCamera(CameraType type, ISceneNode* parent)
+void CameraComponent::createCamera(CameraType type, ISceneNode* parent)
 {
 	switch(type)
 	{

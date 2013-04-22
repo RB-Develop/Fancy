@@ -1,54 +1,37 @@
-#include <Irrlicht/irrlicht.h>
 #include <Engine/FancyEngine.h>
 
 #include "MainMenu.cpp"
 #include "ExtraScene.cpp"
 
-using namespace irr;
-using namespace core;
-using namespace video;
-using namespace gui;
-
 int main()
 {
 	InputManager appReceiver;
+	
+	Core* core = new Core(800, 600, 32, &appReceiver);
 
-	IrrlichtDevice* device = createDevice(EDT_OPENGL,
-		dimension2d<u32>(640, 480), 16,
-		false, false, true, &appReceiver);
-
-	if (!device)
-		return 1;
-
-	IVideoDriver* driver = device->getVideoDriver();
-	IGUIEnvironment* guienv = device->getGUIEnvironment();
-	ISceneManager* smgr = device->getSceneManager();
-
-	SceneManager* sceneManager = new SceneManager(smgr);
-	sceneManager->setActiveScene(new MainMenu(smgr));
+	SceneManager* sceneManager = new SceneManager(core->getSmgr());
+	sceneManager->setActiveScene(new MainMenu(core->getSmgr()));
 		
-	while (device->run())
+	while (core->getDevice()->run())
 	{
-		if (appReceiver.isKeyboardButtonDown(KEY_ESCAPE))
+		if (appReceiver.isKeyboardButtonDown(irr::KEY_ESCAPE))
 		{
-			device->closeDevice();
+			core->getDevice()->closeDevice();
 			return 0;
 		}
-		if (appReceiver.isKeyboardButtonDown(KEY_SPACE))
+		if (appReceiver.isKeyboardButtonDown(irr::KEY_SPACE))
 		{
-			sceneManager->setActiveScene(new ExtraScene(smgr));
+			sceneManager->setActiveScene(new ExtraScene(core->getSmgr()));
 		}
-		if (device->isWindowActive())
+		if (core->getDevice()->isWindowActive())
         {
-            driver->beginScene(true, true, video::SColor(255,200,200,200));
-            smgr->drawAll();
-            driver->endScene();
+			core->draw(255,200,200,200);
 
-            int fps = driver->getFPS();
+            int fps = core->getDriver()->getFPS();
         }
         else
-            device->yield();
+            core->getDevice()->yield();
 	}
-	device->drop();
+	core->getDevice()->drop();
 	return 0;
 }

@@ -1,5 +1,8 @@
 #include <Engine/SceneManager.h>
 
+using namespace irr;
+using namespace scene;
+
 SceneManager::SceneManager(ISceneManager* smgr)
 {
 	activeScene = NULL;

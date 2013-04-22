@@ -1,17 +1,18 @@
 #include <Engine/Scene.h>
 #include <Engine/PrimitiveComponent.h>
-#include <Engine/Camera.h>
+#include <Engine/CameraComponent.h>
+#include <Engine/core.h>
 
 class MainMenu : public Scene
 {
 private:
-	ISceneManager* smgr;
-	Camera* camera;
+	IrrSmgr* smgr;
+	CameraComponent* camera;
 public:
-	MainMenu(ISceneManager* smgr) : Scene("MainMenu")
+	MainMenu(IrrSmgr* smgr) : Scene("MainMenu")
 	{
-		camera = new Camera(smgr);
-		camera->createCamera(Camera::FIRST_PERSON);
+		camera = new CameraComponent(smgr);
+		camera->createCamera(CameraComponent::FIRST_PERSON);
 		addComponent(new PrimitiveComponent(smgr, PrimitiveComponent::PRIM_CUBE, 5));
 
 		this->smgr = smgr;
@@ -19,7 +20,8 @@ public:
 
 	~MainMenu()
 	{
-		delete camera;
+		smgr = NULL;
+		camera = NULL;
 	}
 
 	void update()

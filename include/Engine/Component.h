@@ -1,5 +1,6 @@
 #ifndef FANCY_BASE_COMP
 #define FANCY_BASE_COMP
+
 #include <Irrlicht/irrlicht.h>
 
 class Component

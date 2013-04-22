@@ -1,19 +1,10 @@
-#pragma once
-#include "Irrlicht\irrlicht.h"
-#include "Irrlicht\IEventReceiver.h"
+#ifndef FANCY_INPUT
+#define FANCY_INPUT
 
-using namespace irr;
-
-#define NUMBER_OF_KEYS KEY_KEY_CODES_COUNT
+#define NUMBER_OF_KEYS irr::KEY_KEY_CODES_COUNT
 #define NUMBER_OF_MOUSE_BUTTONS 3
 
-enum ButtonState
-{
-	BS_UP,
-	BS_DOWN,
-	BS_PRESSED,
-	BS_RELEASED
-};
+#include <Irrlicht/irrlicht.h>
 
 enum MouseButton
 {
@@ -24,33 +15,21 @@ enum MouseButton
 
 struct MouseData
 {
-	s32 x, y;
-	f32 wheel;
+	irr::s32 x, y;
+	irr::f32 wheel;
 };
 
-enum ProcessEventState
-{
-	STARTED,
-	ENDED
-};
-
-class InputManager : public IEventReceiver
+class InputManager : public irr::IEventReceiver
 {
 public:
 	InputManager();
 	~InputManager();
 
 	// Keyboard events.
-	bool isKeyboardButtonUp(EKEY_CODE key);
-	bool isKeyboardButtonDown(EKEY_CODE key);
-	bool isKeyboardButtonPressed(EKEY_CODE key);
-	bool isKeyboardButtonReleased(EKEY_CODE key);
+	bool isKeyboardButtonDown(irr::EKEY_CODE key);
 
 	// Mouse events.
-	bool isMouseButtonUp(MouseButton mouseButton);
 	bool isMouseButtonDown(MouseButton mouseButton);
-	bool isMouseButtonPressed(MouseButton mouseButton);
-	bool isMouseButtonReleased(MouseButton mouseButton);
 
 	bool mouseMoved();
 
@@ -69,18 +48,19 @@ public:
 	 */
 	void unsetCustomEventReceiver();
 
-	s32 getMouseX();
-	s32 getMouseY();
-	f32 getMouseWheel();
+	irr::s32 getMouseX();
+	irr::s32 getMouseY();
+	irr::f32 getMouseWheel();
 
-	bool OnEvent(const SEvent &event);
+	bool OnEvent(const irr::SEvent &event);
 protected:
 	bool keys[NUMBER_OF_KEYS];
 	bool mouse[NUMBER_OF_MOUSE_BUTTONS];
 	MouseData mouseData;
-	ProcessEventState processState;
 
 	IEventReceiver* customEventReceiver;
 
 	bool mouseHasMoved;
 };
+
+#endif

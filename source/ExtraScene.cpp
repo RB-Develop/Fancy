@@ -1,24 +1,27 @@
 #include <Engine/Scene.h>
 #include <Engine/PrimitiveComponent.h>
-#include <Engine/Camera.h>
+#include <Engine/CameraComponent.h>
+#include <Engine/Core.h>
 
 class ExtraScene : public Scene
 {
 private:
-	ISceneManager* smgr;
-	Camera* camera;
+	IrrSmgr* smgr;
+	CameraComponent* camera;
 public:
-	ExtraScene(ISceneManager* smgr) : Scene("ExtraMenu")
+	ExtraScene(IrrSmgr* smgr) : Scene("ExtraMenu")
 	{
-		camera = new Camera(smgr);
-		camera->createCamera(Camera::FIRST_PERSON);
+		camera = new CameraComponent(smgr);
+		camera->createCamera(CameraComponent::FIRST_PERSON);
+		addComponent(camera);
 		addComponent(new PrimitiveComponent(smgr, PrimitiveComponent::PRIM_SPHERE, 2));
 		this->smgr = smgr;
 	}
 
 	~ExtraScene()
 	{
-		delete camera;
+		smgr = NULL;
+		camera = NULL;
 	}
 
 	void update()

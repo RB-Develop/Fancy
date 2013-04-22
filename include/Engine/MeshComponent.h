@@ -1,12 +1,13 @@
-#include <Engine/Component.h>
-#include <Irrlicht/irrlicht.h>
+#ifndef FANCY_MESH_COMP
+#define FANCY_MESH_COMP
 
-using namespace irr;
-using namespace io;
+#include <Engine/Component.h>
 
 class MeshComponent : Component
 {
 public:
-	MeshComponent(path);
+	MeshComponent();
 	~MeshComponent();
 };
+
+#endif

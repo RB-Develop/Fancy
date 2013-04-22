@@ -1,14 +1,16 @@
 #include "Engine\InputManager.h"
 
+using namespace irr;
+
 InputManager::InputManager()
 {
 	// Default keyboard button states.
-	for(irr::u32 i = 0; i < NUMBER_OF_KEYS; i++)
-		keys[i] = BS_UP;
+	for(u32 i = 0; i < NUMBER_OF_KEYS; i++)
+		keys[i] = false;
 
 	// Default mouse button states.
-	for(irr::u32 i = 0; i < NUMBER_OF_MOUSE_BUTTONS; i++)
-		mouse[i] = BS_UP;
+	for(u32 i = 0; i < NUMBER_OF_MOUSE_BUTTONS; i++)
+		mouse[i] = false;
 
 	// Default mouse position.
 	mouseData.x = mouseData.y = 0;
@@ -24,58 +26,16 @@ InputManager::~InputManager()
 
 }
 
-bool InputManager::isKeyboardButtonUp(EKEY_CODE key)
-{
-	if(keys[key] == BS_UP)
-		return true;
-	return false;
-}
-
 bool InputManager::isKeyboardButtonDown(EKEY_CODE key)
 {
-	if (keys[key] == BS_DOWN)
-		return true;
-	return false;
-}
-
-bool InputManager::isKeyboardButtonPressed(EKEY_CODE key)
-{
-	if(keys[key] == BS_PRESSED)
-		return true;
-	return false;
-}
-
-bool InputManager::isKeyboardButtonReleased(EKEY_CODE key)
-{
-	if(keys[key] == BS_RELEASED)
-		return true;
-	return false;
-}
-
-bool InputManager::isMouseButtonUp(MouseButton mb)
-{
-	if (mouse[mb] == BS_UP)
+	if (keys[key])
 		return true;
 	return false;
 }
 
 bool InputManager::isMouseButtonDown(MouseButton mb)
 {
-	if (mouse[mb] == BS_DOWN)
-		return true;
-	return false;
-}
-
-bool InputManager::isMouseButtonPressed(MouseButton mb)
-{
-	if (mouse[mb] == BS_PRESSED)
-		return true;
-	return false;
-}
-
-bool InputManager::isMouseButtonReleased(MouseButton mb)
-{
-	if (mouse[mb] == BS_RELEASED)
+	if (mouse[mb])
 		return true;
 	return false;
 }

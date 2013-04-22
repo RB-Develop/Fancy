@@ -1,5 +1,5 @@
-#ifndef COMPOSITE
-#define COMPOSITE
+#ifndef FANCY_COMPOSITE
+#define FANCY_COMPOSITE
 
 #include "Component.h"
 #include <list>
@@ -9,7 +9,10 @@ class Composite : public Component
 public:
 	virtual ~Composite()
 	{
-		while(!components.empty()) delete components.front(), components.pop_front();
+		for (std::list<Component*>::iterator i = components.begin(); i != components.end(); ++i)
+		{
+			delete *i;
+		}
 	}
 
 	virtual void update()
