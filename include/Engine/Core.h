@@ -15,18 +15,13 @@ private:
 	IrrDriver* driver;
 	IrrGuiEnv* guiEnv;
 	IrrSmgr* smgr;
+
+	irr::u32 width, height, bitDepth;
+	irr::IEventReceiver* appReceiver;
 public:
 	/*!
 	* @function Core 
 	*	Constructor for the Fancy core. This handles communication with the Irrlicht 3D engine, physics and networking.
-	* @param ISceneManager* 
-	*	Pass in the pointer to your Irrlicht scene manager.
-	* @param PrimitiveType
-	*	Type of the primitive to create. It can be a Cube (PRIM_CUBE) or Sphere (PRIM_SPHERE).
-	* @param Size
-	*	The size of the primitive. For a sphere it is the radius, for a cube it is the halfsize.
-	* @param Position
-	*	The position in the game world. It is described using an Irrlicht vector3df taking floats.
 	*/
 	Core(irr::u32 width, irr::u32 height, irr::u32 bitDepth, irr::IEventReceiver* receiver);
 	~Core();

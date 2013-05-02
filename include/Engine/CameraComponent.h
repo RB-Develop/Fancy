@@ -6,6 +6,7 @@
 class CameraComponent : public Component
 {
 private:
+	irr::SKeyMap keyMap[8];
 	irr::scene::ISceneManager* smgr;
 	irr::scene::ICameraSceneNode* cameraNode;
 public:
@@ -17,7 +18,7 @@ public:
 
 	CameraComponent(irr::scene::ISceneManager*);
 	~CameraComponent();
-	void createCamera(CameraType, irr::scene::ISceneNode* = 0);
+	void createCamera(CameraType, irr::scene::ISceneNode* = 0, irr::f32 = 10.0f, irr::f32 = 0.2f);
 	irr::scene::ICameraSceneNode* getCameraNode();
 };
 

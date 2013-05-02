@@ -1,20 +1,22 @@
 #include <Engine/Scene.h>
 #include <Engine/PrimitiveComponent.h>
 #include <Engine/CameraComponent.h>
-#include <Engine/core.h>
+#include <Engine/UIBuilder.h>
+#include <Engine/Core.h>
 
 class MainMenu : public Scene
 {
 private:
 	IrrSmgr* smgr;
 	CameraComponent* camera;
+	UIBuilder* uiBuilder;
+	GUIButton* button;
 public:
-	MainMenu(IrrSmgr* smgr) : Scene("MainMenu")
+	MainMenu(IrrSmgr* smgr, UIBuilder* ui) : Scene("MainMenu"), uiBuilder(ui)
 	{
 		camera = new CameraComponent(smgr);
-		camera->createCamera(CameraComponent::FIRST_PERSON);
-		addComponent(new PrimitiveComponent(smgr, PrimitiveComponent::PRIM_CUBE, 5));
-
+		camera->createCamera(CameraComponent::THIRD_PERSON);
+		button = uiBuilder->createButton(150, 150, 150, 30, 0, L"Waddap, new button");
 		this->smgr = smgr;
 	}
 
@@ -22,11 +24,11 @@ public:
 	{
 		smgr = NULL;
 		camera = NULL;
+		uiBuilder = NULL;
 	}
 
 	void update()
 	{
-		//TODO implement
 		Scene::update();
 	}
 };
