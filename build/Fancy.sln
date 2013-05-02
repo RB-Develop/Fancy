@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Fancy Engine", "Fancy.vcxproj", "{449E530E-8A1D-42BC-B6A9-11F4A23D2BD0}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FancyGame", "FancyGame.vcxproj", "{CCD27DD9-26B7-4C07-9C80-ABEFD1E4F174}"
+	ProjectSection(ProjectDependencies) = postProject
+		{449E530E-8A1D-42BC-B6A9-11F4A23D2BD0} = {449E530E-8A1D-42BC-B6A9-11F4A23D2BD0}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
