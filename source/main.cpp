@@ -1,51 +1,30 @@
 #include <Engine/FancyEngine.h>
-#include <SFML/Network.hpp>
-#include <NetworkData.h>
+#include <iostream>
 
 #include "MainMenu.cpp"
 #include "ExtraScene.cpp"
+#include "PacketHandler.h"
 
 int main()
 {
 	InputManager appReceiver;
-	
+	PacketHandler packetHandler;
+
 	Core* core = new Core(800, 600, 32, &appReceiver);
 	UIBuilder* uiBuilder = new UIBuilder(core->getGuiEnv());
 
 	SceneManager* sceneManager = new SceneManager(core->getSmgr());
-	sceneManager->setActiveScene(new MainMenu(core->getSmgr(), uiBuilder));	
-		
-	sf::UdpSocket socket;
+	sceneManager->setActiveScene(new MainMenu(core->getSmgr(), core->getDevice(), uiBuilder, &packetHandler));	
 
-	// bind the socket to a port
-	if (socket.bind(54001) != sf::Socket::Done)
-	{
-		printf("Cannot bind the socket [Client]\n");
-	}
+	wchar_t* hoi = L"xyz";
+	char* haha[9];
 
-	sf::IpAddress recipient = "localhost";
-	
-	const unsigned int packet_size = sizeof(FancyPacket);
-    char packet_data[packet_size];
+	*haha = (char*)hoi;
 
-	FancyPacket packet;
-	packet.packet_type = PacketTypes::REQUEST_NEW_LOBBY;
-
-	packet.serialize(packet_data);
-
-	unsigned short port = 54000;
-	
-	if (socket.send(packet_data, 100, recipient, port) != sf::Socket::Done)
-	{
-		printf("error sending message [Client]\n");
-	}
+	std::cout << "Output: " << haha << "\n";
 
 	while (core->getDevice()->run())
 	{
-		if (appReceiver.isKeyboardButtonDown(irr::KEY_ESCAPE))
-		{
-			core->getSmgr()->getActiveCamera()->setInputReceiverEnabled(false);
-		}
 		if (core->getDevice()->isWindowActive())
         {
 			core->draw(255,255,255,255);

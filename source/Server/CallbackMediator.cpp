@@ -2,7 +2,6 @@
 
 CallbackMediator::CallbackMediator()
 {
-	std::cout << "Setting up mediator shit and all that :D \n";
 	lobbyHandler = new LobbyHandler();
 }
 

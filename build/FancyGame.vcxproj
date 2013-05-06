@@ -72,9 +72,13 @@
     <ClCompile Include="..\source\ExtraScene.cpp" />
     <ClCompile Include="..\source\main.cpp" />
     <ClCompile Include="..\source\MainMenu.cpp" />
+    <ClCompile Include="..\source\MenuEventReceiver.cpp" />
+    <ClCompile Include="..\source\PacketHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\NetworkData.h" />
+    <ClInclude Include="..\source\MenuEventReceiver.h" />
+    <ClInclude Include="..\source\PacketHandler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

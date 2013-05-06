@@ -20,10 +20,7 @@ void PacketReceiver::run()
 	socket.receive(network_data, 100, received, sender, port);
 
 	if (received <= 0) 
-	{
-		//no data recieved
 		return;
-	}
 
 	packet.deserialize(network_data);
 
@@ -31,6 +28,7 @@ void PacketReceiver::run()
 
 	Sleep(20);
 }
+
 /*
 void PacketReceiver::receiveFromClients()
 {

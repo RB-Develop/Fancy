@@ -15,7 +15,7 @@ public:
 	UIBuilder(irr::gui::IGUIEnvironment* gui);
 	~UIBuilder();
 
-	GUIButton* createButton(irr::s32 x, irr::s32 y, irr::s32 width, irr::s32 height, GUIElement* parent, const wchar_t* text);
+	GUIButton* createButton(irr::s32 x, irr::s32 y, irr::s32 width, irr::s32 height, irr::s32 id, GUIElement* parent, const wchar_t* text);
 	
 };
 

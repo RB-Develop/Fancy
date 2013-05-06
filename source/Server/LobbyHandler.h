@@ -4,6 +4,7 @@
 #include <iostream>
 #include <list>
 #include <string>
+#include <map>
 
 #include <NetworkData.h>
 #include <SFML/Network.hpp>
@@ -11,7 +12,7 @@
 class LobbyHandler
 {
 private:
-	std::list<Lobby> _lobbies;
+	std::map<std::string, Lobby> _lobbies;
 public:
 	LobbyHandler();
 	~LobbyHandler();

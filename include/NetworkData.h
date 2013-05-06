@@ -10,11 +10,13 @@
 enum PacketTypes {
     INIT_CONNECTION = 0,
 	REQUEST_NEW_LOBBY = 1,
-    ACTION_EVENT = 2,
+	JOIN_LOBBY = 2,
+    ACTION_EVENT = 3,
 }; 
 
 struct FancyPacket {
     unsigned int packet_type;
+	std::string userName;
 
     void serialize(char * data) {
         memcpy(data, this, sizeof(FancyPacket));
@@ -47,7 +49,8 @@ struct Team
 */
 struct Lobby
 {
-	int size, players;
+	int size;
+	std::list<Player> players;
 	std::list<Team> teams;
 };
 
