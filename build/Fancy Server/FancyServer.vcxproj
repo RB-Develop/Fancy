@@ -10,6 +10,18 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\NetworkData.h" />
+    <ClInclude Include="..\..\source\Server\CallbackMediator.h" />
+    <ClInclude Include="..\..\source\Server\LobbyHandler.h" />
+    <ClInclude Include="..\..\source\Server\PacketReceiver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\source\Server\CallbackMediator.cpp" />
+    <ClCompile Include="..\..\source\Server\LobbyHandler.cpp" />
+    <ClCompile Include="..\..\source\Server\main.cpp" />
+    <ClCompile Include="..\..\source\Server\PacketReceiver.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{798F2C8C-C0A1-4EA7-BBC4-B1B2A0E90CE6}</ProjectGuid>
     <RootNamespace>FancyServer</RootNamespace>
@@ -40,7 +52,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>..\bin\Fancy Server\</OutDir>
+    <OutDir>..\..\bin\Fancy Server\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>..\bin\Fancy Server\Release\</OutDir>
@@ -50,12 +62,12 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SFML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>ws2_32.lib;winmm.lib;SFML/sfml-network-s-d.lib;SFML/sfml-system-s-d.lib;SFML/sfml-main-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -77,18 +89,6 @@
       <AdditionalDependencies>ws2_32.lib;winmm.lib;SFML/sfml-network-s.lib;SFML/sfml-system-s.lib;SFML/sfml-main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\source\Server\CallbackMediator.cpp" />
-    <ClCompile Include="..\source\Server\LobbyHandler.cpp" />
-    <ClCompile Include="..\source\Server\main.cpp" />
-    <ClCompile Include="..\source\Server\PacketReceiver.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\include\NetworkData.h" />
-    <ClInclude Include="..\source\Server\CallbackMediator.h" />
-    <ClInclude Include="..\source\Server\LobbyHandler.h" />
-    <ClInclude Include="..\source\Server\PacketReceiver.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

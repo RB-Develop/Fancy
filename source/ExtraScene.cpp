@@ -7,13 +7,10 @@ class ExtraScene : public Scene
 {
 private:
 	IrrSmgr* smgr;
-	CameraComponent* camera;
 public:
 	ExtraScene(IrrSmgr* smgr) : Scene("ExtraMenu")
 	{
-		camera = new CameraComponent(smgr);
-		camera->createCamera(CameraComponent::FIRST_PERSON);
-		addComponent(camera);
+		addComponent(new CameraComponent(smgr, CameraComponent::FIRST_PERSON));
 		addComponent(new PrimitiveComponent(smgr, PrimitiveComponent::PRIM_SPHERE, 2));
 		this->smgr = smgr;
 	}
@@ -21,7 +18,6 @@ public:
 	~ExtraScene()
 	{
 		smgr = NULL;
-		camera = NULL;
 	}
 
 	void update()

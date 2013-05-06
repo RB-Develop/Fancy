@@ -9,32 +9,29 @@
 class MainMenu : public Scene
 {
 private:
-	IrrSmgr* _smgr;
-	CameraComponent* camera;
-	UIBuilder* uiBuilder;
+	Core* _core;
+	UIBuilder* _uiBuilder;
 	GUIButton* button;
-	PacketHandler* _packetHandler;
-	MenuEventReceiver* receiver;
 	SAppContext context;
 public:
-	MainMenu(IrrSmgr* smgr, IrrDevice* device, UIBuilder* ui, PacketHandler* packetHandler) : Scene("MainMenu"), _smgr(smgr), uiBuilder(ui), _packetHandler(packetHandler)
+	MainMenu(Core* core, UIBuilder* ui, PacketHandler* packetHandler) : Scene("MainMenu"), _core(core), _uiBuilder(ui)
 	{
-		context.device = device;
+		context.core = _core;
 		context.packetHandler = packetHandler;
 
-		receiver = new MenuEventReceiver(context);
-		camera = new CameraComponent(smgr);
-		camera->createCamera(CameraComponent::THIRD_PERSON);
-		button = uiBuilder->createButton(150, 150, 150, 30, GUI_ID_NEW_LOBBY, 0, L"New lobby");
-		device->setEventReceiver(receiver);
+		_core->addCustomReceiver(new MenuEventReceiver(context));
+
+		addComponent(new CameraComponent(_core->getSmgr(), CameraComponent::THIRD_PERSON));
+		
+		_uiBuilder->createButton(150, 150, 150, 30, GUI_ID_NEW_LOBBY, 0, L"New lobby");
+		_uiBuilder->createButton(150, 250, 150, 30, GUI_ID_GAME_SCENE, 0, L"Start scene");
 	}
 
 	~MainMenu()
 	{
-		_smgr = NULL;
-		camera = NULL;
-		uiBuilder = NULL;
-		_packetHandler = NULL;
+		_core->resetReceiver();
+		_core = NULL;
+		_uiBuilder = NULL;
 	}
 
 	void update()

@@ -18,7 +18,7 @@ InputManager::InputManager()
 
 	mouseHasMoved = false;
 
-	unsetCustomEventReceiver();
+	customEventReceiver = NULL;
 }
 
 InputManager::~InputManager()
@@ -67,19 +67,22 @@ f32 InputManager::getMouseWheel()
 
 void InputManager::setCustomEventReceiver(IEventReceiver* eventReceiver)
 {
+	if(customEventReceiver != NULL)
+	{
+		printf("Custom receiver already set, unset first. Request discarded");
+		return;
+	}
 	customEventReceiver = eventReceiver;
 }
 
 void InputManager::unsetCustomEventReceiver()
 {
+	delete customEventReceiver;
 	customEventReceiver = NULL;
 }
 
 bool InputManager::OnEvent(const SEvent &event)
 {
-	if(customEventReceiver != NULL && customEventReceiver->OnEvent(event))
-		return true;
-
 	switch (event.EventType) 
 	{
 	case EET_KEY_INPUT_EVENT: // Keyboard event.
@@ -122,6 +125,9 @@ bool InputManager::OnEvent(const SEvent &event)
 	default:
 		break;
 	}
+		
+	if(customEventReceiver != NULL && customEventReceiver->OnEvent(event))
+		return true;
 
 	return false;
 }

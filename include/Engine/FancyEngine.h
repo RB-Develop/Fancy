@@ -5,5 +5,4 @@
 #include "InputManager.h"
 #include "UIBuilder.h"
 #include "Scene.h"
-#include "SceneManager.h"
 #include "PrimitiveComponent.h"

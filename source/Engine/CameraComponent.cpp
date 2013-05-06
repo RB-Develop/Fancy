@@ -3,7 +3,7 @@
 using namespace irr;
 using namespace scene;
 
-CameraComponent::CameraComponent(ISceneManager* smgr) : Component("Camera")
+CameraComponent::CameraComponent(ISceneManager* smgr, CameraType type) : Component("Camera")
 {
 	keyMap[0].Action = EKA_MOVE_FORWARD;
 	keyMap[0].KeyCode = KEY_UP;
@@ -25,13 +25,14 @@ CameraComponent::CameraComponent(ISceneManager* smgr) : Component("Camera")
 	keyMap[7].Action = EKA_STRAFE_RIGHT;
 	keyMap[7].KeyCode = KEY_KEY_D;
 	this->smgr = smgr;
+
+	createCamera(type);
 }
 
 CameraComponent::~CameraComponent()
 {
 	smgr->addToDeletionQueue(cameraNode);
 	smgr = NULL;
-	delete keyMap;
 }
 
 ICameraSceneNode* CameraComponent::getCameraNode()

@@ -40,7 +40,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>../bin/</OutDir>
+    <OutDir>../bin/Fancy Game/</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -73,6 +73,7 @@
     <ClCompile Include="..\source\main.cpp" />
     <ClCompile Include="..\source\MainMenu.cpp" />
     <ClCompile Include="..\source\MenuEventReceiver.cpp" />
+    <ClCompile Include="..\source\NameSelection.cpp" />
     <ClCompile Include="..\source\PacketHandler.cpp" />
   </ItemGroup>
   <ItemGroup>

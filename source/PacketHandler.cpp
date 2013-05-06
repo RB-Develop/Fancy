@@ -4,7 +4,7 @@ using namespace sf;
 
 PacketHandler::PacketHandler()
 {		
-	recipient = "145.92.13.238";
+	recipient = "localhost";
 
 	// bind the socket to a port
 	if (socket.bind(54001) != Socket::Done)

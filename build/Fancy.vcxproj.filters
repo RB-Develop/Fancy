@@ -19,17 +19,17 @@
     <Filter Include="Header Files\Component\Base">
       <UniqueIdentifier>{7d590869-0bd0-498a-86d6-3d0d169dd85c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Composite">
-      <UniqueIdentifier>{4dbc79fb-38a9-43b7-b80e-fcd9b88a19d4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Composite\Base">
-      <UniqueIdentifier>{2118a1cc-8f24-48c0-8698-aedcd32eb3a6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Component">
       <UniqueIdentifier>{e4089f61-37e5-4ed5-b15d-2cb2170ee86f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Network">
       <UniqueIdentifier>{6fc83ee3-ac73-44e3-9f06-2117e1a7c139}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Composite">
+      <UniqueIdentifier>{4dbc79fb-38a9-43b7-b80e-fcd9b88a19d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Composite\Base">
+      <UniqueIdentifier>{2118a1cc-8f24-48c0-8698-aedcd32eb3a6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -37,9 +37,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\include\Engine\FancyEngine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\Engine\SceneManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\include\Engine\Component.h">
@@ -72,9 +69,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Engine\Scene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Engine\SceneManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Engine\PrimitiveComponent.cpp">

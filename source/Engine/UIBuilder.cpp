@@ -7,7 +7,6 @@ using namespace gui;
 UIBuilder::UIBuilder(IGUIEnvironment* gui) : guiEnv(gui)
 {
 	elementCount = 0;
-	guiEnv = gui;
 }
 
 UIBuilder::~UIBuilder()

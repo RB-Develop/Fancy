@@ -1,3 +1,6 @@
+#ifndef FANCY_SCENE_MANAGER
+#define FANCY_SCENE_MANAGER
+
 #include <Engine/Scene.h>
 
 class SceneManager
@@ -12,3 +15,5 @@ public:
 	virtual void setActiveScene(Scene*);
 	virtual void update();
 };
+
+#endif

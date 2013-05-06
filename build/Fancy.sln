@@ -4,8 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Fancy Engine", "Fancy.vcxproj", "{449E530E-8A1D-42BC-B6A9-11F4A23D2BD0}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Fancy Game", "FancyGame.vcxproj", "{CCD27DD9-26B7-4C07-9C80-ABEFD1E4F174}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FancyServer", "FancyServer.vcxproj", "{798F2C8C-C0A1-4EA7-BBC4-B1B2A0E90CE6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{449E530E-8A1D-42BC-B6A9-11F4A23D2BD0} = {449E530E-8A1D-42BC-B6A9-11F4A23D2BD0}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +22,6 @@ Global
 		{CCD27DD9-26B7-4C07-9C80-ABEFD1E4F174}.Debug|Win32.Build.0 = Debug|Win32
 		{CCD27DD9-26B7-4C07-9C80-ABEFD1E4F174}.Release|Win32.ActiveCfg = Release|Win32
 		{CCD27DD9-26B7-4C07-9C80-ABEFD1E4F174}.Release|Win32.Build.0 = Release|Win32
-		{798F2C8C-C0A1-4EA7-BBC4-B1B2A0E90CE6}.Debug|Win32.ActiveCfg = Debug|Win32
-		{798F2C8C-C0A1-4EA7-BBC4-B1B2A0E90CE6}.Debug|Win32.Build.0 = Debug|Win32
-		{798F2C8C-C0A1-4EA7-BBC4-B1B2A0E90CE6}.Release|Win32.ActiveCfg = Release|Win32
-		{798F2C8C-C0A1-4EA7-BBC4-B1B2A0E90CE6}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
