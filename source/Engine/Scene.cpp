@@ -1,5 +1,8 @@
 #include <Engine\Scene.h>
 
+using namespace fancy;
+using namespace fancy::scene;
+
 Scene::Scene(const char* name) : Composite(name)
 {
 }

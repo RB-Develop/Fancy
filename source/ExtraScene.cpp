@@ -3,6 +3,10 @@
 #include <Engine/CameraComponent.h>
 #include <Engine/Core.h>
 
+using namespace fancy;
+using namespace fancy::scene;
+using namespace fancy::object;
+
 class ExtraScene : public Scene
 {
 private:

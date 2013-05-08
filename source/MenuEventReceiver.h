@@ -4,13 +4,11 @@
 #include <Irrlicht/irrlicht.h>
 #include <Engine/Core.h>
 #include <NetworkData.h>
-#include "PacketHandler.h"
 
 
 struct SAppContext
 {
-	Core *core;
-	PacketHandler *packetHandler;
+	fancy::Core *core;
 };
 
 enum

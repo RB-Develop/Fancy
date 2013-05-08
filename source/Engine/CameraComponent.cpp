@@ -3,6 +3,9 @@
 using namespace irr;
 using namespace scene;
 
+using namespace fancy;
+using namespace object;
+
 CameraComponent::CameraComponent(ISceneManager* smgr, CameraType type) : Component("Camera")
 {
 	keyMap[0].Action = EKA_MOVE_FORWARD;

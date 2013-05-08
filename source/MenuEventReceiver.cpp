@@ -3,9 +3,9 @@
 #include "ExtraScene.cpp"
 
 using namespace irr;
-using namespace core;
-using namespace gui;
-using namespace video;
+using namespace irr::core;
+using namespace irr::gui;
+using namespace irr::video;
 
 
 MenuEventReceiver::MenuEventReceiver(SAppContext& context) : Context(context) 
@@ -37,7 +37,6 @@ bool MenuEventReceiver::OnEvent(const SEvent& event)
 				Context.core->setActiveScene(new ExtraScene(Context.core->getSmgr()));
 				break;
 			case GUI_ID_NEW_LOBBY:
-				Context.packetHandler->sendPacket(PacketTypes::REQUEST_NEW_LOBBY, "René");
 				return true;
 			default:
 				return false;

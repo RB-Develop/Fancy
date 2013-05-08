@@ -3,15 +3,20 @@
 
 #include <Engine/Composite.h>
 
-class Scene : public Composite
-{
-public:
-	virtual void update() = 0;
-	virtual void handleMessage(unsigned int) {};
-	virtual void addComponent(Component*);
-	virtual void removeComponent(Component*);
-protected:
-	Scene(const char*);
-};
+namespace fancy {
+	namespace scene {
 
+		class Scene : public object::Composite
+		{
+		public:
+			virtual void update() = 0;
+			virtual void handleMessage(unsigned int) {};
+			virtual void addComponent(Component*);
+			virtual void removeComponent(Component*);
+		protected:
+			Scene(const char*);
+		};
+
+	}
+}
 #endif

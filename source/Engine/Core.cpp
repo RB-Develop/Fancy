@@ -1,8 +1,13 @@
 #include <Engine/Core.h>
 
+using namespace fancy;
+using namespace fancy::input;
+using namespace fancy::object;
+using namespace fancy::scene;
+
 using namespace irr;
-using namespace core;
-using namespace video;
+using namespace irr::core;
+using namespace irr::video;
 
 Core::Core(u32 width, u32 height, u32 bitDepth)
 {

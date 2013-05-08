@@ -2,16 +2,15 @@
 #include <iostream>
 
 #include "MainMenu.cpp"
-#include "PacketHandler.h"
+
+using namespace fancy;
 
 int main()
 {
-	PacketHandler packetHandler;
-
 	Core* core = new Core(800, 600, 32);
-	UIBuilder* uiBuilder = new UIBuilder(core->getGuiEnv());
+	GuiBuilder* guiBuilder = new GuiBuilder(core->getGuiEnv());
 
-	core->setActiveScene(new MainMenu(core, uiBuilder, &packetHandler));	
+	core->setActiveScene(new MainMenu(core, guiBuilder));	
 
 	while (core->getDevice()->run())
 	{

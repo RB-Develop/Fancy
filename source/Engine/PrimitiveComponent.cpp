@@ -4,6 +4,9 @@ using namespace irr;
 using namespace scene;
 using namespace core;
 
+using namespace fancy;
+using namespace object;
+
 PrimitiveComponent::PrimitiveComponent(ISceneManager* smgr, PrimitiveType type, f32 size, vector3df position) 
 	: Component("Primitive")
 {

@@ -31,11 +31,26 @@
     <Filter Include="Header Files\Composite\Base">
       <UniqueIdentifier>{2118a1cc-8f24-48c0-8698-aedcd32eb3a6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Network">
+      <UniqueIdentifier>{8a27e205-8087-4d7c-9f94-fef2d720a7c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Interface">
+      <UniqueIdentifier>{365d351c-f280-4b07-bc2e-b1ddc112de5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Interface">
+      <UniqueIdentifier>{56c1afc6-d57c-4cbf-9313-f4e915a59848}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Input">
+      <UniqueIdentifier>{d437bf5a-563e-4c21-bbef-b7f5f2e67e7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Input">
+      <UniqueIdentifier>{08d80a52-b90e-479b-8867-de4504962fc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Composite">
+      <UniqueIdentifier>{144250fa-d1b9-4a87-8822-4af661a0b5ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\Engine\InputManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\Engine\FancyEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -60,17 +75,20 @@
     <ClInclude Include="..\include\Engine\CameraComponent.h">
       <Filter>Header Files\Component</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\Engine\UIBuilder.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\include\Engine\PacketHandler.h">
+      <Filter>Header Files\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Engine\GuiBuilder.h">
+      <Filter>Header Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Engine\InputManager.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Engine\Networker.h">
+      <Filter>Header Files\Network</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\source\Engine\InputManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Engine\Scene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Engine\PrimitiveComponent.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
@@ -80,8 +98,20 @@
     <ClCompile Include="..\source\Engine\CameraComponent.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Engine\UIBuilder.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\source\Engine\GuiBuilder.cpp">
+      <Filter>Source Files\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Engine\PacketHandler.cpp">
+      <Filter>Source Files\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Engine\InputManager.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Engine\Scene.cpp">
+      <Filter>Source Files\Composite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Engine\Networker.cpp">
+      <Filter>Source Files\Network</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

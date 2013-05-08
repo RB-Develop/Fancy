@@ -6,61 +6,66 @@
 
 #include <Irrlicht/irrlicht.h>
 
-enum MouseButton
-{
-	LEFT_MB,
-	MIDDLE_MB,
-	RIGHT_MB
-};
+namespace fancy {
+	namespace input {
 
-struct MouseData
-{
-	irr::s32 x, y;
-	irr::f32 wheel;
-};
+		enum MouseButton
+		{
+			LEFT_MB,
+			MIDDLE_MB,
+			RIGHT_MB
+		};
 
-class InputManager : public irr::IEventReceiver
-{
-public:
-	InputManager();
-	~InputManager();
+		struct MouseData
+		{
+			irr::s32 x, y;
+			irr::f32 wheel;
+		};
 
-	// Keyboard events.
-	bool isKeyboardButtonDown(irr::EKEY_CODE key);
+		class InputManager : public irr::IEventReceiver
+		{
+		public:
+			InputManager();
+			~InputManager();
 
-	// Mouse events.
-	bool isMouseButtonDown(MouseButton mouseButton);
+			// Keyboard events.
+			bool isKeyboardButtonDown(irr::EKEY_CODE key);
 
-	bool mouseMoved();
+			// Mouse events.
+			bool isMouseButtonDown(MouseButton mouseButton);
 
-	// Processing functions.
-	void startInputProcess();
-	void endInputProcess();
+			bool mouseMoved();
 
-	/*
-	 * Add a custom event receiver to the input manager. 
-	 * For example an event receiver for GUI elements.
-	 */
-	void setCustomEventReceiver(IEventReceiver* eventReceiver);
+			// Processing functions.
+			void startInputProcess();
+			void endInputProcess();
 
-	/*
-	 * Unset the custom event receiver. Call this when your custom event receiver is no longer needed or deleted.
-	 */
-	void unsetCustomEventReceiver();
+			/*
+			* Add a custom event receiver to the input manager. 
+			* For example an event receiver for GUI elements.
+			*/
+			void setCustomEventReceiver(IEventReceiver* eventReceiver);
 
-	irr::s32 getMouseX();
-	irr::s32 getMouseY();
-	irr::f32 getMouseWheel();
+			/*
+			* Unset the custom event receiver. Call this when your custom event receiver is no longer needed or deleted.
+			*/
+			void unsetCustomEventReceiver();
 
-	bool OnEvent(const irr::SEvent &event);
-protected:
-	bool keys[NUMBER_OF_KEYS];
-	bool mouse[NUMBER_OF_MOUSE_BUTTONS];
-	MouseData mouseData;
+			irr::s32 getMouseX();
+			irr::s32 getMouseY();
+			irr::f32 getMouseWheel();
 
-	IEventReceiver* customEventReceiver;
+			bool OnEvent(const irr::SEvent &event);
+		protected:
+			bool keys[NUMBER_OF_KEYS];
+			bool mouse[NUMBER_OF_MOUSE_BUTTONS];
+			MouseData mouseData;
 
-	bool mouseHasMoved;
-};
+			IEventReceiver* customEventReceiver;
 
+			bool mouseHasMoved;
+		};
+
+	}
+}
 #endif

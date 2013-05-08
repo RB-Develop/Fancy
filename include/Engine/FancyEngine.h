@@ -3,6 +3,6 @@
 #include "Component.h"
 #include "Composite.h"
 #include "InputManager.h"
-#include "UIBuilder.h"
+#include "GuiBuilder.h"
 #include "Scene.h"
 #include "PrimitiveComponent.h"

@@ -2,6 +2,9 @@
 
 using namespace irr;
 
+using namespace fancy;
+using namespace input;
+
 InputManager::InputManager()
 {
 	// Default keyboard button states.

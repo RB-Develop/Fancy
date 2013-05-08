@@ -3,11 +3,17 @@
 
 #include <Engine/Component.h>
 
-class MeshComponent : Component
-{
-public:
-	MeshComponent();
-	~MeshComponent();
-};
+namespace fancy {
+	namespace object {
+
+		class MeshComponent : Component
+		{
+		public:
+			MeshComponent();
+			~MeshComponent();
+		};
+
+	}
+}
 
 #endif

@@ -4,45 +4,46 @@
 #include <Irrlicht/irrlicht.h>
 #include "Scene.h"
 #include "InputManager.h"
-
-typedef irr::IrrlichtDevice IrrDevice;
-typedef irr::video::IVideoDriver IrrDriver;
-typedef irr::gui::IGUIEnvironment IrrGuiEnv;
-typedef irr::scene::ISceneManager IrrSmgr;
-
-class Core
+namespace fancy 
 {
-private:
-	Scene* activeScene;
+	typedef irr::IrrlichtDevice IrrDevice;
+	typedef irr::video::IVideoDriver IrrDriver;
+	typedef irr::gui::IGUIEnvironment IrrGuiEnv;
+	typedef irr::scene::ISceneManager IrrSmgr;
 
-	IrrDevice* device;
-	IrrDriver* driver;
-	IrrGuiEnv* guiEnv;
-	IrrSmgr* smgr;
+	class Core
+	{
+	private:
+		scene::Scene* activeScene;
 
-	irr::u32 width, height, bitDepth;
+		IrrDevice* device;
+		IrrDriver* driver;
+		IrrGuiEnv* guiEnv;
+		IrrSmgr* smgr;
 
-	InputManager* appReceiver;
-public:
-	/*!
-	* @function Core 
-	*	Constructor for the Fancy core. This handles communication with the Irrlicht 3D engine, physics and networking.
-	*/
-	Core(irr::u32 width, irr::u32 height, irr::u32 bitDepth);
-	~Core();
+		irr::u32 width, height, bitDepth;
 
-	void draw(irr::u32 alpha, irr::u32 red, irr::u32 green, irr::u32 blue);
-	void update(irr::s32 duration);
+		input::InputManager* appReceiver;
+	public:
+		/*!
+		* @function Core 
+		*	Constructor for the Fancy core. This handles communication with the Irrlicht 3D engine, physics and networking.
+		*/
+		Core(irr::u32 width, irr::u32 height, irr::u32 bitDepth);
+		~Core();
 
-	void addCustomReceiver(irr::IEventReceiver* receiver);
-	void resetReceiver();
+		void draw(irr::u32 alpha, irr::u32 red, irr::u32 green, irr::u32 blue);
+		void update(irr::s32 duration);
 
-	void setActiveScene(Scene* scene);
+		void addCustomReceiver(irr::IEventReceiver* receiver);
+		void resetReceiver();
 
-	IrrDevice* getDevice() { return device; };
-	IrrDriver* getDriver() { return driver; };
-	IrrGuiEnv* getGuiEnv() { return guiEnv; };
-	IrrSmgr* getSmgr() { return smgr; };
-};
+		void setActiveScene(scene::Scene* scene);
 
+		IrrDevice* getDevice() { return device; };
+		IrrDriver* getDriver() { return driver; };
+		IrrGuiEnv* getGuiEnv() { return guiEnv; };
+		IrrSmgr* getSmgr() { return smgr; };
+	};
+}
 #endif

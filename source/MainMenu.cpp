@@ -1,23 +1,26 @@
 #include <Engine/Scene.h>
 #include <Engine/PrimitiveComponent.h>
 #include <Engine/CameraComponent.h>
-#include <Engine/UIBuilder.h>
+#include <Engine/GuiBuilder.h>
 #include <Engine/Core.h>
-#include "PacketHandler.h"
 #include "MenuEventReceiver.h"
+
+using namespace fancy;
+using namespace fancy::scene;
+using namespace fancy::gui;
+using namespace fancy::object;
 
 class MainMenu : public Scene
 {
 private:
 	Core* _core;
-	UIBuilder* _uiBuilder;
+	GuiBuilder* _uiBuilder;
 	GUIButton* button;
 	SAppContext context;
 public:
-	MainMenu(Core* core, UIBuilder* ui, PacketHandler* packetHandler) : Scene("MainMenu"), _core(core), _uiBuilder(ui)
+	MainMenu(Core* core, GuiBuilder* ui) : Scene("MainMenu"), _core(core), _uiBuilder(ui)
 	{
 		context.core = _core;
-		context.packetHandler = packetHandler;
 
 		_core->addCustomReceiver(new MenuEventReceiver(context));
 

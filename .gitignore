@@ -41,3 +41,6 @@ obj/
 _ReSharper*/
 [Tt]est[Rr]esult*
 assets/
+build/AssemblyDependencies1.dgml
+build/ClassDiagram.cd
+*.bsc

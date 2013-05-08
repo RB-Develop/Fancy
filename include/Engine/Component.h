@@ -3,23 +3,26 @@
 
 #include <Irrlicht/irrlicht.h>
 
-class Component
-{
-public:
-	virtual ~Component() {};
+namespace fancy {
+	namespace object {
 
-	const char* getName() { return _name; }
+		class Component
+		{
+		public:
+			virtual ~Component() {};
 
-	virtual void init() {};
-	virtual void update() {};
-	virtual void handleMessage(unsigned int, void* data = 0) { };
-	virtual void cleanUp() {};
-protected:
-	Component(const char*) {};
-private:
-	const char* _name;
-};
+			const char* getName() { return _name; }
 
+			virtual void init() {};
+			virtual void update() {};
+			virtual void handleMessage(unsigned int, void* data = 0) { };
+		protected:
+			Component(const char*) {};
+		private:
+			const char* _name;
+		}; 
+	}
+}
 
 #endif
 
