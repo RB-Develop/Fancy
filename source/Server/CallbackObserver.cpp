@@ -1,15 +1,15 @@
-#include "CallbackMediator.h"
+#include "CallbackObserver.h"
 
-CallbackMediator::CallbackMediator()
+CallbackObserver::CallbackObserver()
 {
 	lobbyHandler = new LobbyHandler();
 }
 
-CallbackMediator::~CallbackMediator()
+CallbackObserver::~CallbackObserver()
 {
 }
 
-void CallbackMediator::handleRequest(unsigned int request, std::string sender)
+void CallbackObserver::handleRequest(unsigned int request, std::string sender)
 {
 	switch (request) {
 	case INIT_CONNECTION:

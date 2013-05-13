@@ -24,10 +24,5 @@ PacketHandler::~PacketHandler()
 
 void PacketHandler::sendPacket(const char* packet_data, const unsigned int packet_size)
 {
-	unsigned short port = 54000;
 	
-	if (_socket.send(packet_data, packet_size, _hostAddress, port) != Socket::Done)
-	{
-		printf("Error sending message to the server.\n");
-	}
 }

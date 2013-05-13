@@ -11,21 +11,25 @@ namespace fancy {
 		{		
 		public:
 			static Networker* instance();
+						
+			void setHostIp(std::string hostAdress);
 
 			bool openUdpSocket(unsigned short port);
+			bool sendPacket(const char* data, const unsigned int packet_size);
 
-			bool registerUsername(char* username);
-			char* receiveOnSocket();
+			char* receiveData();
 		protected:
 			Networker();
 		private:
 			static Networker* _instance;
-			static PacketHandler* _packetHandler;
+			
+			char* _data;
+			unsigned short _hostPort;
 
-			const char* _username;
-
-			sf::IpAddress _hostAddress;
+			sf::IpAddress _hostAdress;
 			sf::UdpSocket _socket;
+			
+			std::size_t _receivedSize;
 		};
 
 	}

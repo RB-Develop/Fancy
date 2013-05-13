@@ -4,6 +4,8 @@
 #include "MainMenu.cpp"
 
 using namespace fancy;
+using namespace fancy::network;
+
 
 int main()
 {
@@ -11,6 +13,8 @@ int main()
 	GuiBuilder* guiBuilder = new GuiBuilder(core->getGuiEnv());
 
 	core->setActiveScene(new MainMenu(core, guiBuilder));	
+
+	Networker::instance()->openUdpSocket(9125);
 
 	while (core->getDevice()->run())
 	{

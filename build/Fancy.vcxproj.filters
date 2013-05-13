@@ -75,9 +75,6 @@
     <ClInclude Include="..\include\Engine\CameraComponent.h">
       <Filter>Header Files\Component</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\Engine\PacketHandler.h">
-      <Filter>Header Files\Network</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\Engine\GuiBuilder.h">
       <Filter>Header Files\Interface</Filter>
     </ClInclude>
@@ -100,9 +97,6 @@
     </ClCompile>
     <ClCompile Include="..\source\Engine\GuiBuilder.cpp">
       <Filter>Source Files\Interface</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Engine\PacketHandler.cpp">
-      <Filter>Source Files\Network</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Engine\InputManager.cpp">
       <Filter>Source Files\Input</Filter>

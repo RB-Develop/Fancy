@@ -1,6 +1,6 @@
 #include "PacketReceiver.h"
 
-PacketReceiver::PacketReceiver(CallbackMediator* mediator) : _mediator(mediator)
+PacketReceiver::PacketReceiver(CallbackObserver* mediator)
 {
 	socket.setBlocking(false);
 
@@ -23,8 +23,6 @@ void PacketReceiver::run()
 		return;
 
 	packet.deserialize(network_data);
-
-	_mediator->handleRequest(packet.packet_type, sender.toString());
 
 	Sleep(20);
 }

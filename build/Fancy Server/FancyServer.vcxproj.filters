@@ -13,25 +13,43 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Base">
+      <UniqueIdentifier>{938f3f6f-7d06-448f-9d54-818dedb5c481}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Observers">
+      <UniqueIdentifier>{3495ac21-552a-4159-9087-ec5f629bf6d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared Files">
+      <UniqueIdentifier>{be9bea90-31dc-4003-bddc-a9e752caf1db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\NetworkData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\Server\CallbackMediator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\Server\LobbyHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\source\Server\PacketReceiver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\source\Server\PacketManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Server\Subject.h">
+      <Filter>Header Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Server\Observer.h">
+      <Filter>Header Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Server\CallbackObserver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Server\LobbyHandler.h">
+      <Filter>Header Files\Observers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\NetworkData.h">
+      <Filter>Shared Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Server\ChangeManager.h">
+      <Filter>Header Files\Base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\source\Server\CallbackMediator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\Server\LobbyHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -39,6 +57,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\Server\PacketReceiver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Server\CallbackObserver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

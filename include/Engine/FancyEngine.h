@@ -4,5 +4,6 @@
 #include "Composite.h"
 #include "InputManager.h"
 #include "GuiBuilder.h"
+#include "Networker.h"
 #include "Scene.h"
 #include "PrimitiveComponent.h"

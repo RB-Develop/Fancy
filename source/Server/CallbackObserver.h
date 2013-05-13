@@ -9,13 +9,13 @@
 
 #include "LobbyHandler.h"
 
-class CallbackMediator
+class CallbackObserver
 {
 private:
 	LobbyHandler* lobbyHandler;
 public:
-	CallbackMediator();
-	~CallbackMediator();
+	CallbackObserver();
+	~CallbackObserver();
 
 	void handleRequest(unsigned int request, std::string sender);
 };

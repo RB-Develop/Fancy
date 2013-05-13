@@ -12,12 +12,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\NetworkData.h" />
-    <ClInclude Include="..\..\source\Server\CallbackMediator.h" />
+    <ClInclude Include="..\..\source\Server\CallbackObserver.h" />
+    <ClInclude Include="..\..\source\Server\ChangeManager.h" />
     <ClInclude Include="..\..\source\Server\LobbyHandler.h" />
+    <ClInclude Include="..\..\source\Server\Observer.h" />
+    <ClInclude Include="..\..\source\Server\PacketManager.h" />
     <ClInclude Include="..\..\source\Server\PacketReceiver.h" />
+    <ClInclude Include="..\..\source\Server\Subject.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\source\Server\CallbackMediator.cpp" />
+    <ClCompile Include="..\..\source\Server\CallbackObserver.cpp" />
     <ClCompile Include="..\..\source\Server\LobbyHandler.cpp" />
     <ClCompile Include="..\..\source\Server\main.cpp" />
     <ClCompile Include="..\..\source\Server\PacketReceiver.cpp" />

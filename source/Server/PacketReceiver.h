@@ -7,7 +7,7 @@
 #include <SFML/Network.hpp>
 #include <NetworkData.h>
 
-#include "CallbackMediator.h"
+#include "CallbackObserver.h"
 
 class PacketReceiver
 {
@@ -20,9 +20,9 @@ private:
 	sf::IpAddress sender;
 
 	FancyPacket packet;
-	CallbackMediator* _mediator;
+	CallbackObserver* _listener;
 public:
-	PacketReceiver(CallbackMediator* mediator);
+	PacketReceiver(CallbackObserver* listener);
 	~PacketReceiver();
 
 	void run();
