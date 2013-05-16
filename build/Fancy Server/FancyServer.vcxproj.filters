@@ -27,17 +27,11 @@
     <ClInclude Include="..\..\source\Server\PacketReceiver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\Server\PacketManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\source\Server\Subject.h">
       <Filter>Header Files\Base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\Server\Observer.h">
       <Filter>Header Files\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\Server\CallbackObserver.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\Server\LobbyHandler.h">
       <Filter>Header Files\Observers</Filter>
@@ -45,8 +39,11 @@
     <ClInclude Include="..\..\include\NetworkData.h">
       <Filter>Shared Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\Server\ChangeManager.h">
-      <Filter>Header Files\Base</Filter>
+    <ClInclude Include="..\..\source\Server\PlayerData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Server\WorldData.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -59,7 +56,13 @@
     <ClCompile Include="..\..\source\Server\PacketReceiver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\Server\CallbackObserver.cpp">
+    <ClCompile Include="..\..\source\Server\PlayerData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Server\Subject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Server\WorldData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

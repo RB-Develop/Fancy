@@ -12,19 +12,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\NetworkData.h" />
-    <ClInclude Include="..\..\source\Server\CallbackObserver.h" />
-    <ClInclude Include="..\..\source\Server\ChangeManager.h" />
     <ClInclude Include="..\..\source\Server\LobbyHandler.h" />
     <ClInclude Include="..\..\source\Server\Observer.h" />
-    <ClInclude Include="..\..\source\Server\PacketManager.h" />
     <ClInclude Include="..\..\source\Server\PacketReceiver.h" />
+    <ClInclude Include="..\..\source\Server\PlayerData.h" />
     <ClInclude Include="..\..\source\Server\Subject.h" />
+    <ClInclude Include="..\..\source\Server\WorldData.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\source\Server\CallbackObserver.cpp" />
     <ClCompile Include="..\..\source\Server\LobbyHandler.cpp" />
     <ClCompile Include="..\..\source\Server\main.cpp" />
     <ClCompile Include="..\..\source\Server\PacketReceiver.cpp" />
+    <ClCompile Include="..\..\source\Server\PlayerData.cpp" />
+    <ClCompile Include="..\..\source\Server\Subject.cpp" />
+    <ClCompile Include="..\..\source\Server\WorldData.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{798F2C8C-C0A1-4EA7-BBC4-B1B2A0E90CE6}</ProjectGuid>

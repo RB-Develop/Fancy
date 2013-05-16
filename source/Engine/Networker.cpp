@@ -42,6 +42,7 @@ bool Networker::sendPacket(const char* packet_data, const unsigned int packet_si
 {
 	if (_socket.send(packet_data, packet_size, _hostAdress, _hostPort) != Socket::Done)
 	{
+		printf("Can't send");
 		return false;
 	}
 	return true;

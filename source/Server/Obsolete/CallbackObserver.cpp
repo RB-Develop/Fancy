@@ -1,15 +1,17 @@
 #include "CallbackObserver.h"
 
+using namespace std;
+
 CallbackObserver::CallbackObserver()
 {
-	lobbyHandler = new LobbyHandler();
+
 }
 
 CallbackObserver::~CallbackObserver()
 {
 }
 
-void CallbackObserver::handleRequest(unsigned int request, std::string sender)
+void CallbackObserver::handleRequest(unsigned int request, string sender)
 {
 	switch (request) {
 	case INIT_CONNECTION:
@@ -17,10 +19,9 @@ void CallbackObserver::handleRequest(unsigned int request, std::string sender)
 		break;
 	case REQUEST_NEW_LOBBY:
 		std::cout << "Client " << sender << " has requested a new lobby.\n";
-		lobbyHandler->createNewLobby("An awesome new lobby");
 		break;
 	case ACTION_EVENT:
-		printf("server received action event packet from client\n");
+		printf("server received action event packet from %s. \n", sender.c_str());
 		break;
 	default:
 		printf("error in packet types\n");

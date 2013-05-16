@@ -6,10 +6,10 @@ class Subject;
 class Observer
 {
 public:
-	virtual ~Observer();
-	virtual void update(Subject changedSubject) = 0;
+	virtual ~Observer() { };
+	virtual void update(Subject* changedSubject) = 0;
 protected:
-	Observer();
+	Observer() { };
 };
 
 #endif

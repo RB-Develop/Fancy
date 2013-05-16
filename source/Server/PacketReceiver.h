@@ -7,10 +7,16 @@
 #include <SFML/Network.hpp>
 #include <NetworkData.h>
 
-#include "CallbackObserver.h"
+#include "Subject.h"
 
-class PacketReceiver
+class PacketReceiver : public Subject
 {
+public:
+	PacketReceiver();
+	virtual ~PacketReceiver();
+
+	void run();
+	FancyPacket* getPacket();
 private:
 	char network_data[MAX_PACKET_SIZE];
 	unsigned short port;
@@ -20,14 +26,6 @@ private:
 	sf::IpAddress sender;
 
 	FancyPacket packet;
-	CallbackObserver* _listener;
-public:
-	PacketReceiver(CallbackObserver* listener);
-	~PacketReceiver();
-
-	void run();
-
-	void receiveFromClients();
 };
 
 #endif

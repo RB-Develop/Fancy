@@ -7,12 +7,10 @@
 #include <SFML/Network.hpp>
 #include <NetworkData.h>
 
-#include "LobbyHandler.h"
+#include "Observer.h"
 
-class CallbackObserver
+class CallbackObserver : Observer
 {
-private:
-	LobbyHandler* lobbyHandler;
 public:
 	CallbackObserver();
 	~CallbackObserver();

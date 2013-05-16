@@ -7,9 +7,9 @@ class ChangeManager
 public:
 	virtual ~ChangeManager();
 
-	virtual void registerPair(Subject*, Observer*);
-	virtual void unregisterPair(Subject*, Observer*);
-	virtual void notify();
+	virtual void registerPair(Subject*, Observer*) = 0;
+	virtual void unregisterPair(Subject*, Observer*) = 0;
+	virtual void notify() = 0;
 protected:
 	ChangeManager();
 private:

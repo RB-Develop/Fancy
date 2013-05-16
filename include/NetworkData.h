@@ -9,9 +9,10 @@
 
 enum PacketTypes {
     INIT_CONNECTION = 0,
-	REQUEST_NEW_LOBBY = 1,
-	JOIN_LOBBY = 2,
-    ACTION_EVENT = 3,
+	REGISTER_PLAYER,
+	REQUEST_NEW_LOBBY,
+	JOIN_LOBBY,
+    ACTION_EVENT,
 }; 
 
 struct FancyPacket {
@@ -23,8 +24,13 @@ struct FancyPacket {
     }
 
     void deserialize(char * data) {
-        memcpy(this, data, sizeof(FancyPacket));
+		memcpy(this, data, sizeof(FancyPacket));
     }
+};
+
+struct PlayerDataPacket : FancyPacket
+{
+
 };
 
 /*

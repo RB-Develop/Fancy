@@ -1,6 +1,6 @@
 #include "PacketReceiver.h"
 
-PacketReceiver::PacketReceiver(CallbackObserver* mediator)
+PacketReceiver::PacketReceiver()
 {
 	socket.setBlocking(false);
 
@@ -17,14 +17,19 @@ PacketReceiver::~PacketReceiver()
 
 void PacketReceiver::run()
 {
-	socket.receive(network_data, 100, received, sender, port);
+	socket.receive(network_data, MAX_PACKET_SIZE, received, sender, port);
 
 	if (received <= 0) 
 		return;
 
 	packet.deserialize(network_data);
 
-	Sleep(20);
+	notify();
+}
+
+FancyPacket* PacketReceiver::getPacket()
+{
+	return &packet;
 }
 
 /*
