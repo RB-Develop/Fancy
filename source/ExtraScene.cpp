@@ -15,15 +15,19 @@ private:
 public:
 	ExtraScene(Core* core) : Scene("ExtraMenu")
 	{
-		addComponent(new CameraComponent(core->getSmgr(), CameraComponent::FIRST_PERSON));
-		addComponent(new PrimitiveComponent(core->getSmgr(), PrimitiveComponent::PRIM_SPHERE, 2));
-		addComponent(new Skybox(core->getSmgr(), core->getDriver(), "sky")); 
 		_core = core;
 	}
 
 	~ExtraScene()
 	{
 		_core = NULL;
+	}
+
+	void init()
+	{
+		addComponent(new CameraComponent(_core->getSmgr(), CameraComponent::FIRST_PERSON));
+		addComponent(new PrimitiveComponent(_core->getSmgr(), PrimitiveComponent::PRIM_SPHERE, 2));
+		addComponent(new Skybox(_core->getSmgr(), _core->getDriver(), "sky")); 
 	}
 
 	void update()

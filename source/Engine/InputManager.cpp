@@ -72,8 +72,7 @@ void InputManager::setCustomEventReceiver(IEventReceiver* eventReceiver)
 {
 	if(customEventReceiver != NULL)
 	{
-		printf("Custom receiver already set, unset first. Request discarded");
-		return;
+		printf("Custom receiver already set, unset first. \n");
 	}
 	customEventReceiver = eventReceiver;
 }

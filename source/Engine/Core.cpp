@@ -65,5 +65,7 @@ void Core::setActiveScene(Scene* scene)
 {
 	if(activeScene != NULL)
 		delete activeScene;
+
 	activeScene = scene;
+	activeScene->init();
 }

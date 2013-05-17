@@ -1,8 +1,7 @@
 #include "MenuEventReceiver.h"
 
 #include "ExtraScene.cpp"
-
-#include <Engine/Networker.h>
+#include "MainMenu.cpp"
 
 using namespace irr;
 using namespace irr::core;
@@ -11,7 +10,7 @@ using namespace irr::video;
 
 using namespace fancy::network;
 
-MenuEventReceiver::MenuEventReceiver(SAppContext& context) : Context(context) 
+MenuEventReceiver::MenuEventReceiver(SAppContext& context) : _context(context) 
 {
 
 }
@@ -26,25 +25,25 @@ bool MenuEventReceiver::OnEvent(const SEvent& event)
 	if (event.EventType == EET_GUI_EVENT)
 	{
 		s32 id = event.GUIEvent.Caller->getID();
-		IGUIEnvironment* env = Context.core->getDevice()->getGUIEnvironment();
+		IGUIEnvironment* env = _context.core->getDevice()->getGUIEnvironment();
 		FancyPacket packet;
+
 		switch(event.GUIEvent.EventType)
 		{
 		case EGET_BUTTON_CLICKED:
 			switch(id)
 			{
 			case GUI_ID_QUIT_BUTTON:
-				Context.core->getDevice()->closeDevice();
+				_context.core->getDevice()->closeDevice();
 				return true;
 			case GUI_ID_GAME_SCENE:
-				Context.core->setActiveScene(new ExtraScene(Context.core));
-				break;
+				_context.core->setActiveScene(new ExtraScene(_context.core));
+				return true;
 			case GUI_ID_NEW_LOBBY:
-				packet.packet_type = PacketTypes::ACTION_EVENT;
-				packet.userName = "Bobby";
-				char data[MAX_PACKET_SIZE];
-				packet.serialize(data);
-				Networker::instance()->sendPacket(data, sizeof(FancyPacket));
+				return true;
+			case GUI_CONFIRM_NAME:
+				printf("Name given is: %ls. \n", _context.nameBox->getText());
+				_context.core->setActiveScene(new MainMenu(_context.core, _context.f_interface));
 				return true;
 			default:
 				return false;

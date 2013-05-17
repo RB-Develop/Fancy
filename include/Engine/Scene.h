@@ -10,6 +10,7 @@ namespace fancy {
 		{
 		public:
 			virtual void update() = 0;
+			virtual void init() {};
 			virtual void handleMessage(unsigned int) {};
 			virtual void addComponent(Component*);
 			virtual void removeComponent(Component*);

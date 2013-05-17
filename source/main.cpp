@@ -4,6 +4,7 @@
 
 #include "NetworkHandler.h"
 #include "MainMenu.cpp"
+#include "NameSelection.cpp"
 
 using namespace fancy;
 using namespace fancy::network;
@@ -15,7 +16,7 @@ int main()
 	Interface* f_interface = new Interface(core->getGuiEnv(), core->getDriver());
 	NetworkHandler* networkHandler = new NetworkHandler();
 
-	core->setActiveScene(new MainMenu(core, f_interface));	
+	core->setActiveScene(new NameSelection(core, f_interface));	
 
 	Networker::instance()->openUdpSocket(9125);
 
