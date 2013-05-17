@@ -48,6 +48,9 @@
     <ClCompile Include="..\source\NameSelection.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\NetworkHandler.cpp">
+      <Filter>Source Files\Network</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\MenuEventReceiver.h">
@@ -55,6 +58,9 @@
     </ClInclude>
     <ClInclude Include="..\include\NetworkData.h">
       <Filter>Shared Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\NetworkHandler.h">
+      <Filter>Header Files\Network</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,11 +1,13 @@
 #include "PacketReceiver.h"
 
+using namespace sf;
+
 PacketReceiver::PacketReceiver()
 {
-	socket.setBlocking(false);
+	_socket.setBlocking(false);
 
 	// bind the socket to a port
-	if (socket.bind(54000) != sf::Socket::Done)
+	if (_socket.bind(54000) != sf::Socket::Done)
 	{
 		printf("Cannot bind the socket [Server]\n");
 	}
@@ -17,7 +19,7 @@ PacketReceiver::~PacketReceiver()
 
 void PacketReceiver::run()
 {
-	socket.receive(network_data, MAX_PACKET_SIZE, received, sender, port);
+	_socket.receive(network_data, MAX_PACKET_SIZE, received, sender, port);
 
 	if (received <= 0) 
 		return;
@@ -30,6 +32,24 @@ void PacketReceiver::run()
 FancyPacket* PacketReceiver::getPacket()
 {
 	return &packet;
+}
+
+IpAddress* PacketReceiver::getSender()
+{
+	return &sender;
+}
+
+unsigned short PacketReceiver::getSenderPort()
+{
+	return port;
+}
+
+void PacketReceiver::respond(const char* packet_data, const unsigned int packet_size, IpAddress* clientAdress, const unsigned int clientPort)
+{
+	if (_socket.send(packet_data, packet_size, *clientAdress, clientPort) != Socket::Done)
+	{
+		printf("Can't send.\n");
+	}
 }
 
 /*

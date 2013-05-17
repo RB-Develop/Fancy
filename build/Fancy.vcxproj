@@ -21,7 +21,7 @@
     <ClInclude Include="..\include\Engine\Networker.h" />
     <ClInclude Include="..\include\Engine\PrimitiveComponent.h" />
     <ClInclude Include="..\include\Engine\Scene.h" />
-    <ClInclude Include="..\include\Engine\GuiBuilder.h" />
+    <ClInclude Include="..\include\Engine\Interface.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\Engine\CameraComponent.cpp" />
@@ -30,7 +30,7 @@
     <ClCompile Include="..\source\Engine\Networker.cpp" />
     <ClCompile Include="..\source\Engine\PrimitiveComponent.cpp" />
     <ClCompile Include="..\source\Engine\Scene.cpp" />
-    <ClCompile Include="..\source\Engine\GuiBuilder.cpp" />
+    <ClCompile Include="..\source\Engine\Interface.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{449E530E-8A1D-42BC-B6A9-11F4A23D2BD0}</ProjectGuid>

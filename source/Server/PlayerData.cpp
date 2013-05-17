@@ -13,31 +13,27 @@ PlayerData::~PlayerData()
 
 void PlayerData::update(Subject* changedSubject)
 {
-	if(_subject != changedSubject)
+	if(changedSubject != _subject)
 		return;
 
-	if(isOfInterest(_subject->getPacket()) == false){
-		printf("Can't be bothered, letting it slide. [Player Data] \n");
+	if(isOfInterest(_subject->getPacket()) == false)
 		return;
-	}	
-	printf("This is of interest to me! Working on it [Player Data] \n");
 
 	std::string userName = _subject->getPacket()->userName.c_str();
+
+	FancyPacket response;
+	response.userName = "Server";
+	response.packet_type = PacketTypes::REGISTER_SUCCES;
+
+	char responseData[MAX_PACKET_SIZE];
+	response.serialize(responseData);
 
 	if(players.find(userName) != players.end()) {
 		printf("Player already exists. Respond with a failure to subscribe.\n");
 	}
 	else {
 		printf("New player, adding to the existing set and respond with a success message.\n");
+		_subject->respond(responseData, sizeof(FancyPacket), _subject->getSender(), _subject->getSenderPort());
 		players.insert(userName);
 	}
-
-	delete &userName;
-}
-
-bool PlayerData::isOfInterest(FancyPacket* packet)
-{
-	if(packet->packet_type == PacketTypes::REGISTER_PLAYER)
-		return true;
-	return false;
 }

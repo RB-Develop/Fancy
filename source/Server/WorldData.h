@@ -16,8 +16,6 @@ public:
 	virtual void update(Subject*);
 private:
 	PacketReceiver* _subject;
-
-	bool isOfInterest(FancyPacket*);
 };
 
 #endif 

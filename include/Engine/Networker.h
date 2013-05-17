@@ -23,12 +23,15 @@ namespace fancy {
 		private:
 			static Networker* _instance;
 			
-			char* _data;
+			char _data[1000];
+			
 			unsigned short _hostPort;
-
 			sf::IpAddress _hostAdress;
 			sf::UdpSocket _socket;
 			
+			unsigned short _receivedFromPort;
+			sf::IpAddress _receivedFromAdress;
+
 			std::size_t _receivedSize;
 		};
 

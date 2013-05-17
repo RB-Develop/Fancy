@@ -78,10 +78,12 @@
     <ClCompile Include="..\source\MainMenu.cpp" />
     <ClCompile Include="..\source\MenuEventReceiver.cpp" />
     <ClCompile Include="..\source\NameSelection.cpp" />
+    <ClCompile Include="..\source\NetworkHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\NetworkData.h" />
     <ClInclude Include="..\source\MenuEventReceiver.h" />
+    <ClInclude Include="..\source\NetworkHandler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,14 +1,15 @@
 #include <Engine/Networker.h>
 
+#include <iostream>
+
 using namespace std;
 using namespace sf;
 using namespace fancy::network;
 
 Networker::Networker()
 {
-	_hostPort = 54000;
-	_hostAdress = "localhost";
-	_data = "";
+	_hostPort = _receivedFromPort = 54000;
+	_hostAdress = _receivedFromAdress = "localhost";
 }
 
 Networker* Networker::_instance = 0;
@@ -50,6 +51,15 @@ bool Networker::sendPacket(const char* packet_data, const unsigned int packet_si
 
 char* Networker::receiveData()
 {
-	_socket.receive(_data, 1000, _receivedSize, _hostAdress, _hostPort);
+	_socket.receive(_data, 1000, _receivedSize, _receivedFromAdress, _receivedFromPort);
+
+	if(_receivedSize <= 0)
+		return NULL;
+
+	if(_receivedFromAdress != _hostAdress && _receivedFromPort != _hostPort) {
+		printf("Packet injection detected, cheater on the loose");
+		return NULL;
+	}
+	
 	return _data;
 }

@@ -2,6 +2,7 @@
 #define FANCY_SUBJECT
 
 #include "Observer.h"
+
 #include <list>
 
 class Subject

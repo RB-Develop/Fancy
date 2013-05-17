@@ -17,8 +17,6 @@ public:
 private:
 	PacketReceiver* _subject;
 	std::set<std::string> players;
-
-	bool isOfInterest(FancyPacket* packet);
 };
 
 #endif 

@@ -1,7 +1,7 @@
 #include <Engine/Scene.h>
 #include <Engine/PrimitiveComponent.h>
 #include <Engine/CameraComponent.h>
-#include <Engine/GuiBuilder.h>
+#include <Engine/Interface.h>
 #include <Engine/Core.h>
 #include "MenuEventReceiver.h"
 
@@ -14,11 +14,10 @@ class MainMenu : public Scene
 {
 private:
 	Core* _core;
-	GuiBuilder* _uiBuilder;
-	GUIButton* button;
+	Interface* _interface;
 	SAppContext context;
 public:
-	MainMenu(Core* core, GuiBuilder* ui) : Scene("MainMenu"), _core(core), _uiBuilder(ui)
+	MainMenu(Core* core, Interface* ui) : Scene("MainMenu"), _core(core), _interface(ui)
 	{
 		context.core = _core;
 
@@ -26,15 +25,25 @@ public:
 
 		addComponent(new CameraComponent(_core->getSmgr(), CameraComponent::THIRD_PERSON));
 		
-		_uiBuilder->createButton(150, 150, 150, 30, GUI_ID_NEW_LOBBY, 0, L"New lobby");
-		_uiBuilder->createButton(150, 250, 150, 30, GUI_ID_GAME_SCENE, 0, L"Start scene");
+		_interface->addImage("../assets/galaxy.jpg", 0, 0);
+		_interface->addImage("../assets/logo.png", 40, 50);
+
+		_interface->createButton(core->getDriver()->getScreenSize().Width/2-75, 150, 
+			150, 30, 
+			GUI_ID_NEW_LOBBY, 0, L"New lobby");
+
+		_interface->createButton(core->getDriver()->getScreenSize().Width/2-75, 250, 
+			150, 30, 
+			GUI_ID_GAME_SCENE, 0, L"Start scene");
 	}
 
 	~MainMenu()
 	{
 		_core->resetReceiver();
 		_core = NULL;
-		_uiBuilder = NULL;
+
+		_interface->resetInterface();
+		_interface = NULL;
 	}
 
 	void update()

@@ -23,10 +23,3 @@ void WorldData::update(Subject* changedSubject)
 
 	printf("This is of interest to me! Working on it [World Data] \n");
 }
-
-bool WorldData::isOfInterest(FancyPacket* packet)
-{
-	if(packet->packet_type == PacketTypes::ACTION_EVENT)
-		return true;
-	return false;
-}

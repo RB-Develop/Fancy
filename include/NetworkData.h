@@ -5,14 +5,18 @@
 #include <list>
 #include <string.h>
 
-#define MAX_PACKET_SIZE 1000000
+#define MAX_PACKET_SIZE 10000
 
 enum PacketTypes {
+	// Client types
     INIT_CONNECTION = 0,
 	REGISTER_PLAYER,
 	REQUEST_NEW_LOBBY,
 	JOIN_LOBBY,
     ACTION_EVENT,
+
+	// Server types
+	REGISTER_SUCCES,
 }; 
 
 struct FancyPacket {
