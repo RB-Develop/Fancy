@@ -2,6 +2,7 @@
 #include <Engine/PrimitiveComponent.h>
 #include <Engine/CameraComponent.h>
 #include <Engine/Core.h>
+#include <Engine/Skybox.h>
 
 using namespace fancy;
 using namespace fancy::scene;
@@ -10,18 +11,19 @@ using namespace fancy::object;
 class ExtraScene : public Scene
 {
 private:
-	IrrSmgr* smgr;
+	Core* _core;
 public:
-	ExtraScene(IrrSmgr* smgr) : Scene("ExtraMenu")
+	ExtraScene(Core* core) : Scene("ExtraMenu")
 	{
-		addComponent(new CameraComponent(smgr, CameraComponent::FIRST_PERSON));
-		addComponent(new PrimitiveComponent(smgr, PrimitiveComponent::PRIM_SPHERE, 2));
-		this->smgr = smgr;
+		addComponent(new CameraComponent(core->getSmgr(), CameraComponent::FIRST_PERSON));
+		addComponent(new PrimitiveComponent(core->getSmgr(), PrimitiveComponent::PRIM_SPHERE, 2));
+		addComponent(new Skybox(core->getSmgr(), core->getDriver(), "sky")); 
+		_core = core;
 	}
 
 	~ExtraScene()
 	{
-		smgr = NULL;
+		_core = NULL;
 	}
 
 	void update()

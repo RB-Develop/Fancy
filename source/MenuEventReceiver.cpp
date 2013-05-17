@@ -37,7 +37,7 @@ bool MenuEventReceiver::OnEvent(const SEvent& event)
 				Context.core->getDevice()->closeDevice();
 				return true;
 			case GUI_ID_GAME_SCENE:
-				Context.core->setActiveScene(new ExtraScene(Context.core->getSmgr()));
+				Context.core->setActiveScene(new ExtraScene(Context.core));
 				break;
 			case GUI_ID_NEW_LOBBY:
 				packet.packet_type = PacketTypes::ACTION_EVENT;

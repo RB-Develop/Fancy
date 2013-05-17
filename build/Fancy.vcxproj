@@ -22,6 +22,7 @@
     <ClInclude Include="..\include\Engine\PrimitiveComponent.h" />
     <ClInclude Include="..\include\Engine\Scene.h" />
     <ClInclude Include="..\include\Engine\Interface.h" />
+    <ClInclude Include="..\include\Engine\Skybox.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\Engine\CameraComponent.cpp" />
@@ -31,6 +32,7 @@
     <ClCompile Include="..\source\Engine\PrimitiveComponent.cpp" />
     <ClCompile Include="..\source\Engine\Scene.cpp" />
     <ClCompile Include="..\source\Engine\Interface.cpp" />
+    <ClCompile Include="..\source\Engine\Skybox.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{449E530E-8A1D-42BC-B6A9-11F4A23D2BD0}</ProjectGuid>

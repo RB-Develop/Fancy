@@ -84,6 +84,9 @@
     <ClInclude Include="..\include\Engine\Interface.h">
       <Filter>Header Files\Interface</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\Engine\Skybox.h">
+      <Filter>Header Files\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\Engine\PrimitiveComponent.cpp">
@@ -106,6 +109,9 @@
     </ClCompile>
     <ClCompile Include="..\source\Engine\Interface.cpp">
       <Filter>Source Files\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Engine\Skybox.cpp">
+      <Filter>Source Files\Component</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

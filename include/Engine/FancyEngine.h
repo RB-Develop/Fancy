@@ -3,7 +3,7 @@
 #include "Component.h"
 #include "Composite.h"
 #include "InputManager.h"
-#include "GuiBuilder.h"
+#include "Interface.h"
 #include "Networker.h"
 #include "Scene.h"
 #include "PrimitiveComponent.h"

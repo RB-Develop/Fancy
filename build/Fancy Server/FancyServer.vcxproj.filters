@@ -22,6 +22,12 @@
     <Filter Include="Shared Files">
       <UniqueIdentifier>{be9bea90-31dc-4003-bddc-a9e752caf1db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Base">
+      <UniqueIdentifier>{3f57c971-89fe-48da-bb0c-52a58d8c2064}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Observers">
+      <UniqueIdentifier>{0a9ed4d0-b6c1-48fb-849a-fd0787fff273}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\Server\PacketReceiver.h">
@@ -40,30 +46,33 @@
       <Filter>Shared Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\Server\PlayerData.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Observers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\Server\WorldData.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Observers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\source\Server\LobbyHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\Server\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\Server\PacketReceiver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\Server\PlayerData.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\source\Server\Observer.cpp">
+      <Filter>Source Files\Base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\Server\Subject.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Server\LobbyHandler.cpp">
+      <Filter>Source Files\Observers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Server\PlayerData.cpp">
+      <Filter>Source Files\Observers</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\Server\WorldData.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Observers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

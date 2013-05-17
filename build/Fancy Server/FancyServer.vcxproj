@@ -22,6 +22,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\source\Server\LobbyHandler.cpp" />
     <ClCompile Include="..\..\source\Server\main.cpp" />
+    <ClCompile Include="..\..\source\Server\Observer.cpp" />
     <ClCompile Include="..\..\source\Server\PacketReceiver.cpp" />
     <ClCompile Include="..\..\source\Server\PlayerData.cpp" />
     <ClCompile Include="..\..\source\Server\Subject.cpp" />

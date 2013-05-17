@@ -1,11 +1,11 @@
 #include <Engine/PrimitiveComponent.h>
 
 using namespace irr;
-using namespace scene;
-using namespace core;
+using namespace irr::scene;
+using namespace irr::core;
 
 using namespace fancy;
-using namespace object;
+using namespace fancy::object;
 
 PrimitiveComponent::PrimitiveComponent(ISceneManager* smgr, PrimitiveType type, f32 size, vector3df position) 
 	: Component("Primitive")
