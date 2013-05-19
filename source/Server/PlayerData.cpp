@@ -1,5 +1,7 @@
 #include "PlayerData.h"
 
+using namespace std;
+
 PlayerData::PlayerData(PacketReceiver* observeSubject)
 {
 	_subject = observeSubject;
@@ -19,21 +21,42 @@ void PlayerData::update(Subject* changedSubject)
 	if(isOfInterest(_subject->getPacket()) == false)
 		return;
 
-	std::string userName = _subject->getPacket()->userName.c_str();
+	string userName = _subject->getPacket()->userName.c_str();
 
-	FancyPacket response;
-	response.userName = "Server";
-	response.packet_type = PacketTypes::REGISTER_SUCCES;
+	for(list<PlayerPacket>::iterator i=players.begin(); i!=players.end(); ++i)
+	{
+		if((*i).userName == userName) {
+			_response.packet_type = PacketTypes::REGISTER_FAIL;
+			_serializedPacket << _response;
+			_subject->respond(&_serializedPacket, _subject->getSender(), _subject->getSenderPort());
 
-	char responseData[MAX_PACKET_SIZE];
-	response.serialize(responseData);
-
-	if(players.find(userName) != players.end()) {
-		printf("Player already exists. Respond with a failure to subscribe.\n");
+			_response = _nullPacket;
+			_serializedPacket.clear();
+			return;
+		}
 	}
-	else {
-		printf("New player, adding to the existing set and respond with a success message.\n");
-		_subject->respond(responseData, sizeof(FancyPacket), _subject->getSender(), _subject->getSenderPort());
-		players.insert(userName);
+
+	_response.packet_type = PacketTypes::REGISTER_SUCCES;
+
+	PlayerPacket playerData; 
+	playerData.userName = _subject->getPacket()->userName;
+	playerData.ipAdress = _subject->getSender()->toString();
+	playerData.port = _subject->getSenderPort();
+	players.push_back(playerData);
+
+	for(list<PlayerPacket>::iterator i=players.begin(); i!=players.end(); ++i)
+	{
+		_response.p_list.push_back(*i);
 	}
+
+	_serializedPacket << _response;
+
+	for(list<PlayerPacket>::iterator i=players.begin(); i!=players.end(); ++i)
+	{
+		sf::IpAddress address((*i).ipAdress);
+		_subject->respond(&_serializedPacket, &address, (*i).port);
+	}
+
+	_response = _nullPacket;
+	_serializedPacket.clear();
 }

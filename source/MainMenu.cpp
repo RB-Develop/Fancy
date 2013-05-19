@@ -4,6 +4,7 @@
 #include <Engine/Interface.h>
 #include <Engine/Core.h>
 #include "MenuEventReceiver.h"
+#include "NetworkHandler.h"
 
 using namespace fancy;
 using namespace fancy::scene;
@@ -15,13 +16,14 @@ class MainMenu : public Scene
 private:
 	Core* _core;
 	Interface* _interface;
+	NetworkHandler* _net;
 	SAppContext context;
 public:
-	MainMenu(Core* core, Interface* ui) : Scene("MainMenu"), _core(core), _interface(ui)
+	MainMenu(Core* core, Interface* ui, NetworkHandler* net) : Scene("MainMenu"), _core(core), _interface(ui), _net(net)
 	{
-		printf("Made pointer links.\n");
 		context.core = _core;
-		context.f_interface = _interface;		
+		context.currentScene = this;
+		_net->attachScene(this);
 	}
 
 	~MainMenu()
@@ -35,7 +37,6 @@ public:
 
 	void init()
 	{
-		printf("Initializing scene now.\n");
 		_interface->addImage("../assets/galaxy.jpg", 0, 0);
 		_interface->addImage("../assets/logo.png", 40, 50);
 
@@ -48,6 +49,15 @@ public:
 			GUI_ID_GAME_SCENE, 0, L"Start scene");
 
 		_core->addCustomReceiver(new MenuEventReceiver(context));
+	}
+
+	void requestNextScene()
+	{
+	}
+
+	void notify(void* data)
+	{
+
 	}
 
 	void update()

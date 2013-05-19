@@ -1,14 +1,9 @@
 #include "MenuEventReceiver.h"
 
-#include "ExtraScene.cpp"
-#include "MainMenu.cpp"
-
 using namespace irr;
 using namespace irr::core;
 using namespace irr::gui;
 using namespace irr::video;
-
-using namespace fancy::network;
 
 MenuEventReceiver::MenuEventReceiver(SAppContext& context) : _context(context) 
 {
@@ -26,7 +21,6 @@ bool MenuEventReceiver::OnEvent(const SEvent& event)
 	{
 		s32 id = event.GUIEvent.Caller->getID();
 		IGUIEnvironment* env = _context.core->getDevice()->getGUIEnvironment();
-		FancyPacket packet;
 
 		switch(event.GUIEvent.EventType)
 		{
@@ -37,13 +31,12 @@ bool MenuEventReceiver::OnEvent(const SEvent& event)
 				_context.core->getDevice()->closeDevice();
 				return true;
 			case GUI_ID_GAME_SCENE:
-				_context.core->setActiveScene(new ExtraScene(_context.core));
+				_context.currentScene->requestNextScene();
 				return true;
 			case GUI_ID_NEW_LOBBY:
 				return true;
 			case GUI_CONFIRM_NAME:
-				printf("Name given is: %ls. \n", _context.nameBox->getText());
-				_context.core->setActiveScene(new MainMenu(_context.core, _context.f_interface));
+				_context.currentScene->requestNextScene();
 				return true;
 			default:
 				return false;

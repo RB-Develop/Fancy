@@ -12,17 +12,6 @@ Networker::Networker()
 	_hostAdress = _receivedFromAdress = "localhost";
 }
 
-Networker* Networker::_instance = 0;
-
-Networker* Networker::instance()
-{
-	if(_instance == 0)
-	{
-		_instance = new Networker();
-	}
-	return _instance;
-}
-
 void Networker::setHostIp(string hostAdress)
 {
 	_hostAdress = hostAdress;
@@ -30,6 +19,9 @@ void Networker::setHostIp(string hostAdress)
 
 bool Networker::openUdpSocket(unsigned short port)
 {
+	if(port == 0)
+		port = _socket.AnyPort;
+
 	if (_socket.bind(port) != Socket::Done)
 	{
 		return false;
@@ -39,9 +31,9 @@ bool Networker::openUdpSocket(unsigned short port)
 	return true;
 }
 
-bool Networker::sendPacket(const char* packet_data, const unsigned int packet_size)
+bool Networker::sendPacket(Packet* packet)
 {
-	if (_socket.send(packet_data, packet_size, _hostAdress, _hostPort) != Socket::Done)
+	if (_socket.send(*packet, _hostAdress, _hostPort) != Socket::Done)
 	{
 		printf("Can't send");
 		return false;
@@ -49,7 +41,22 @@ bool Networker::sendPacket(const char* packet_data, const unsigned int packet_si
 	return true;
 }
 
-char* Networker::receiveData()
+Packet* Networker::receiveData()
+{
+	_socket.receive(_receivedPacket, _receivedFromAdress, _receivedFromPort);
+
+	if(_receivedPacket.getDataSize() <= 0)
+		return NULL;
+
+	if(_receivedFromAdress != _hostAdress && _receivedFromPort != _hostPort) {
+		printf("Packet injection detected, cheater on the loose. \n");
+		return NULL;
+	}
+	
+	return &_receivedPacket;
+}
+
+/*char* Networker::receiveData()
 {
 	_socket.receive(_data, 1000, _receivedSize, _receivedFromAdress, _receivedFromPort);
 
@@ -57,9 +64,9 @@ char* Networker::receiveData()
 		return NULL;
 
 	if(_receivedFromAdress != _hostAdress && _receivedFromPort != _hostPort) {
-		printf("Packet injection detected, cheater on the loose");
+		printf("Packet injection detected, cheater on the loose. \n");
 		return NULL;
 	}
 	
 	return _data;
-}
+}*/

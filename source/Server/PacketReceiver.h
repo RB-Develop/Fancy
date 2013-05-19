@@ -16,19 +16,18 @@ public:
 	virtual ~PacketReceiver();
 
 	void run();
-	void respond(const char* packet_data, const unsigned int packet_size, sf::IpAddress* clientAdress, const unsigned int clientPort);
+	void respond(sf::Packet*, sf::IpAddress*, const unsigned short clientPort);
 	
 	FancyPacket* getPacket();
 	sf::IpAddress* getSender();
 	unsigned short getSenderPort();
 private:
-	char network_data[MAX_PACKET_SIZE];
 	unsigned short port;
 
-	std::size_t received;
 	sf::UdpSocket _socket;
 	sf::IpAddress sender;
 
+	sf::Packet _serializedPacket;
 	FancyPacket packet;
 };
 

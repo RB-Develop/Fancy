@@ -19,12 +19,12 @@ PacketReceiver::~PacketReceiver()
 
 void PacketReceiver::run()
 {
-	_socket.receive(network_data, MAX_PACKET_SIZE, received, sender, port);
-
-	if (received <= 0) 
+	_socket.receive(_serializedPacket, sender, port);
+	
+	if(_serializedPacket.getDataSize() <= 0)
 		return;
 
-	packet.deserialize(network_data);
+	_serializedPacket >> packet;
 
 	notify();
 }
@@ -44,9 +44,9 @@ unsigned short PacketReceiver::getSenderPort()
 	return port;
 }
 
-void PacketReceiver::respond(const char* packet_data, const unsigned int packet_size, IpAddress* clientAdress, const unsigned int clientPort)
+void PacketReceiver::respond(Packet* packet, IpAddress* address, unsigned short clientPort)
 {
-	if (_socket.send(packet_data, packet_size, *clientAdress, clientPort) != Socket::Done)
+	if(_socket.send(*packet, *address, clientPort) != Socket::Done)
 	{
 		printf("Can't send.\n");
 	}
@@ -90,5 +90,13 @@ break;
 }
 }
 }
+}
+
+void PacketReceiver::respond(const char* packet_data, const unsigned int packet_size, IpAddress* clientAdress, const unsigned short clientPort)
+{
+	if (_socket.send(packet_data, packet_size, *clientAdress, clientPort) != Socket::Done)
+	{
+		printf("Can't send.\n");
+	}
 }
 */

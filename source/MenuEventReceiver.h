@@ -13,8 +13,7 @@
 struct SAppContext
 {
 	fancy::Core *core;
-	irr::gui::IGUIElement* nameBox;
-	fancy::gui::Interface* f_interface;
+	fancy::scene::Scene* currentScene;
 };
 
 enum

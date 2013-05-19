@@ -30,6 +30,15 @@ public:
 		addComponent(new Skybox(_core->getSmgr(), _core->getDriver(), "sky")); 
 	}
 
+	void requestNextScene()
+	{
+	}
+
+	void notify(void* data)
+	{
+
+	}
+
 	void update()
 	{
 		//TODO implement

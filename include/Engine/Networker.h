@@ -9,22 +9,15 @@ namespace fancy {
 	
 		class Networker
 		{		
-		public:
-			static Networker* instance();
-						
+		public:		
+			Networker();
 			void setHostIp(std::string hostAdress);
 
 			bool openUdpSocket(unsigned short port);
-			bool sendPacket(const char* data, const unsigned int packet_size);
+			bool sendPacket(sf::Packet* packet);
 
-			char* receiveData();
-		protected:
-			Networker();
-		private:
-			static Networker* _instance;
-			
-			char _data[1000];
-			
+			sf::Packet* receiveData();
+		private:						
 			unsigned short _hostPort;
 			sf::IpAddress _hostAdress;
 			sf::UdpSocket _socket;
@@ -32,7 +25,7 @@ namespace fancy {
 			unsigned short _receivedFromPort;
 			sf::IpAddress _receivedFromAdress;
 
-			std::size_t _receivedSize;
+			sf::Packet _receivedPacket;
 		};
 
 	}

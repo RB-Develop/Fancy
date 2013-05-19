@@ -8,7 +8,7 @@ int main()
 {	
 	PacketReceiver receiver;
 	Observer* playerData = new PlayerData(&receiver);
-	playerData->setInterest(PacketTypes::ACTION_EVENT);
+	playerData->setInterest(PacketTypes::REGISTER_PLAYER);
 	Observer* worldData = new WorldData(&receiver);
 	worldData->setInterest(PacketTypes::ACTION_EVENT);
 	
