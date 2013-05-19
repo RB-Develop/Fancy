@@ -76,8 +76,10 @@ public:
 		{
 			if(_net->getPacket()->packet_type == PacketTypes::REGISTER_SUCCES) 
 				_allowNextScene = true;
-			else
+			else {
+				_interface->addMessageBox(L"Confirmation failed.", L"That name is already in use, choose a different name.", true, 1, 0);
 				_sceneRequest = false;
+			}
 		}
 	}
 

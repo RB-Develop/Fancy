@@ -14,6 +14,7 @@ namespace fancy {
 
 			void createButton(irr::s32 x, irr::s32 y, irr::s32 width, irr::s32 height, irr::s32 id, irr::gui::IGUIElement* parent, const wchar_t* text);
 			void addEditBox(irr::s32 x, irr::s32 y, irr::s32 width, irr::s32 height, irr::s32 id, irr::gui::IGUIElement* parent, const wchar_t* text, bool border);
+			void addMessageBox(const wchar_t* caption, const wchar_t* message, bool blocking, irr::s32 flags, irr::gui::IGUIElement* parent, irr::io::path imagePath = "", irr::s32 id = 999);
 			void addImage(irr::io::path, int x, int y);
 
 			void resetInterface();
