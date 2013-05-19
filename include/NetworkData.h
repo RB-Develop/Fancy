@@ -96,7 +96,7 @@ inline sf::Packet& operator >>(sf::Packet& in, FancyPacket& out)
 {
 	in >> out.packet_type >> out.userName >> out.ipAdress >> out.port >> out.p_listSize;
 
-	for(unsigned int i = 0; i <= out.p_listSize; i++) {
+	for(unsigned int i = 0; i < out.p_listSize; i++) {
 		PlayerPacket p_data;
 		in >> p_data;
 		out.p_list.push_back(p_data);

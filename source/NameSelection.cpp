@@ -67,7 +67,6 @@ public:
 		std::string name = tempdata;
 		_net->setUserName(name);
 		_net->sendPacketType(PacketTypes::REGISTER_PLAYER);
-
 		_sceneRequest = true;
 	}
 
@@ -75,17 +74,11 @@ public:
 	{
 		if(data == _net)
 		{
-			if(_net->getPacket()->packet_type == PacketTypes::REGISTER_SUCCES) {
+			if(_net->getPacket()->packet_type == PacketTypes::REGISTER_SUCCES) 
 				_allowNextScene = true;
-			}
 			else
-				failRegister();
+				_sceneRequest = false;
 		}
-	}
-
-	void failRegister()
-	{
-		printf("Failed to register. \n");
 	}
 
 	void update()

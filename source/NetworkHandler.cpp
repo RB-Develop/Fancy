@@ -26,11 +26,10 @@ void NetworkHandler::run()
 
 	*packet >> _receivedPacket;
 
-	for(std::list<PlayerPacket>::iterator i=_receivedPacket.p_list.begin(); i!=_receivedPacket.p_list.end(); ++i)
+	for(std::list<PlayerPacket>::iterator i = _receivedPacket.p_list.begin(); i != _receivedPacket.p_list.end(); ++i)
 	{
-		std::cout << (*i).userName << std::endl;
+		std::cout << (*i).userName << " is a user.\n";
 	}
-	std::cout << _receivedPacket.packet_type << std::endl;
 	onReceived();
 
 	_receivedPacket = _nullPacket;
@@ -50,6 +49,9 @@ void NetworkHandler::sendPacketType(unsigned int type)
 	_serializedPacket << _sendPacket;
 
 	_networker->sendPacket(&_serializedPacket);
+
+	_sendPacket = _nullPacket;
+	_serializedPacket.clear();
 }
 
 void NetworkHandler::attachScene(fancy::scene::Scene* o)
