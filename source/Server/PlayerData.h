@@ -22,6 +22,13 @@ private:
 	sf::Packet _serializedPacket;
 	FancyPacket _response;
 	const FancyPacket _nullPacket;
+
+	bool playerExists(std::string playerName);
+
+	void responseFailure();
+	void responseSucces();
+	void broadCastPlayerList();
+	void addNewPlayer();
 };
 
 #endif 

@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Engine\CameraComponent.h" />
+    <ClInclude Include="..\include\Engine\CGUITexturedSkin.h" />
     <ClInclude Include="..\include\Engine\Component.h" />
     <ClInclude Include="..\include\Engine\Composite.h" />
     <ClInclude Include="..\include\Engine\Core.h" />
@@ -26,6 +27,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\Engine\CameraComponent.cpp" />
+    <ClCompile Include="..\source\Engine\CGUITexturedSkin.cpp" />
     <ClCompile Include="..\source\Engine\Core.cpp" />
     <ClCompile Include="..\source\Engine\InputManager.cpp" />
     <ClCompile Include="..\source\Engine\Networker.cpp" />

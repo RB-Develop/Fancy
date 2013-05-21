@@ -12,7 +12,9 @@ using namespace fancy::network;
 int main()
 {
 	Core* core = new Core(800, 600, 32);
+
 	Interface* f_interface = new Interface(core->getGuiEnv(), core->getDriver());
+	f_interface->setFont("../assets/Fonts/Georgia_12px.xml");
 
 	NetworkHandler* networkHandler = new NetworkHandler();
 

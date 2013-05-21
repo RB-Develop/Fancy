@@ -39,9 +39,6 @@
     <ClInclude Include="..\..\source\Server\Observer.h">
       <Filter>Header Files\Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\Server\LobbyHandler.h">
-      <Filter>Header Files\Observers</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\NetworkData.h">
       <Filter>Shared Files</Filter>
     </ClInclude>
@@ -49,6 +46,9 @@
       <Filter>Header Files\Observers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\Server\WorldData.h">
+      <Filter>Header Files\Observers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Server\LobbyData.h">
       <Filter>Header Files\Observers</Filter>
     </ClInclude>
   </ItemGroup>
@@ -65,13 +65,13 @@
     <ClCompile Include="..\..\source\Server\Subject.cpp">
       <Filter>Source Files\Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\Server\LobbyHandler.cpp">
-      <Filter>Source Files\Observers</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\Server\PlayerData.cpp">
       <Filter>Source Files\Observers</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\Server\WorldData.cpp">
+      <Filter>Source Files\Observers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Server\LobbyData.cpp">
       <Filter>Source Files\Observers</Filter>
     </ClCompile>
   </ItemGroup>

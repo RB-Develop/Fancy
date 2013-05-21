@@ -17,9 +17,6 @@ void WorldData::update(Subject* changedSubject)
 		return;
 
 	if(isOfInterest(_subject->getPacket()) == false){
-		printf("Can't be bothered, letting it slide. [World Data] \n");
 		return;
 	}	
-
-	printf("This is of interest to me! Working on it [World Data] \n");
 }

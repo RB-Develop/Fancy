@@ -12,7 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\NetworkData.h" />
-    <ClInclude Include="..\..\source\Server\LobbyHandler.h" />
+    <ClInclude Include="..\..\source\Server\LobbyData.h" />
     <ClInclude Include="..\..\source\Server\Observer.h" />
     <ClInclude Include="..\..\source\Server\PacketReceiver.h" />
     <ClInclude Include="..\..\source\Server\PlayerData.h" />
@@ -20,7 +20,7 @@
     <ClInclude Include="..\..\source\Server\WorldData.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\source\Server\LobbyHandler.cpp" />
+    <ClCompile Include="..\..\source\Server\LobbyData.cpp" />
     <ClCompile Include="..\..\source\Server\main.cpp" />
     <ClCompile Include="..\..\source\Server\Observer.cpp" />
     <ClCompile Include="..\..\source\Server\PacketReceiver.cpp" />

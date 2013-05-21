@@ -34,8 +34,17 @@ bool MenuEventReceiver::OnEvent(const SEvent& event)
 				_context.currentScene->requestNextScene();
 				return true;
 			case GUI_ID_NEW_LOBBY:
+				_context.createNew = true;
+				_context.currentScene->requestNextScene();
 				return true;
-			case GUI_CONFIRM_NAME:
+			case GUI_ID_LOBBY_LIST:
+				_context.createNew = false;
+				_context.currentScene->requestNextScene();
+				return true;
+			case GUI_ID_REFRESH_LOBBYLIST:
+				_context.net->sendPacketType(PacketTypes::REQUEST_LOBBY_LIST);
+				return true;
+			case GUI_ID_CONFIRM_NAME:
 				_context.currentScene->requestNextScene();
 				return true;
 			default:

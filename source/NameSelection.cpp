@@ -18,6 +18,9 @@ private:
 	Interface* _interface;
 	NetworkHandler* _net;
 
+	clock_t startTime;
+	double secondsPassed;
+
 	bool _sceneRequest, _allowNextScene;
 
 	SAppContext context;
@@ -50,11 +53,11 @@ public:
 
 		_interface->addEditBox(_core->getDriver()->getScreenSize().Width/2-125, 250,
 			250, 30,
-			GUI_EDIT_NAME, 0, L"", false);
+			GUI_ID_EDIT_NAME, 0, L"", false);
 
 		_interface->createButton(_core->getDriver()->getScreenSize().Width/2-75, 300, 
 			150, 30, 
-			GUI_CONFIRM_NAME, 0, L"Confirm");
+			GUI_ID_CONFIRM_NAME, 0, L"Confirm");
 
 		_core->addCustomReceiver(new MenuEventReceiver(context));
 	}
@@ -63,11 +66,14 @@ public:
 	{
 		size_t i;
 		char tempdata[25];
-		wcstombs_s(&i, tempdata, _interface->getElementWithId(GUI_EDIT_NAME)->getText(), 24);
+		wcstombs_s(&i, tempdata, _interface->getElementWithId(GUI_ID_EDIT_NAME)->getText(), 24);
 		std::string name = tempdata;
+
 		_net->setUserName(name);
-		_net->sendPacketType(PacketTypes::REGISTER_PLAYER);
+		_net->sendPacketType(PacketTypes::REQUEST_REGISTER_PLAYER);
+
 		_sceneRequest = true;
+		startTime = clock();
 	}
 
 	void notify(void* data)
@@ -85,6 +91,14 @@ public:
 
 	void update()
 	{
+		if(_sceneRequest) {
+			secondsPassed = (float)(clock() - startTime) / CLOCKS_PER_SEC;
+			if(secondsPassed >= 3)
+			{
+				_interface->addMessageBox(L"Confirmation failed.", L"No response from the server.\nAre you connected to the internet?", true, 1, 0);
+				_sceneRequest = false;
+			}
+		}
 		if(_sceneRequest && _allowNextScene) {
 			_core->setActiveScene(new MainMenu(_core, _interface, _net));
 			return;

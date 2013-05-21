@@ -41,6 +41,9 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>../bin/Fancy Game/</OutDir>
+    <EnableManagedIncrementalBuild>false</EnableManagedIncrementalBuild>
+    <IntDir>../temp/FancyGame/DEBUG/</IntDir>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -49,6 +52,7 @@
       <AdditionalIncludeDirectories>../include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SFML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BrowseInformation>true</BrowseInformation>
+      <EnablePREfast>false</EnablePREfast>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -73,7 +77,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\source\ExtraScene.cpp" />
+    <ClCompile Include="..\source\GameScene.cpp" />
+    <ClCompile Include="..\source\LobbyListMenu.cpp" />
     <ClCompile Include="..\source\main.cpp" />
     <ClCompile Include="..\source\MainMenu.cpp" />
     <ClCompile Include="..\source\MenuEventReceiver.cpp" />

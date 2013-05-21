@@ -1,24 +1,28 @@
 #include <Engine/Scene.h>
+#include <Engine/Interface.h>
 #include <Engine/PrimitiveComponent.h>
 #include <Engine/CameraComponent.h>
 #include <Engine/Core.h>
 #include <Engine/Skybox.h>
 
+#include "NetworkHandler.h"
+
 using namespace fancy;
 using namespace fancy::scene;
 using namespace fancy::object;
+using namespace fancy::gui;
 
-class ExtraScene : public Scene
+class GameScene : public Scene
 {
 private:
 	Core* _core;
 public:
-	ExtraScene(Core* core) : Scene("ExtraMenu")
+	GameScene(Core* core, Interface* ui, NetworkHandler* net) : Scene("ExtraMenu")
 	{
 		_core = core;
 	}
 
-	~ExtraScene()
+	~GameScene()
 	{
 		_core = NULL;
 	}

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-PlayerData::PlayerData(PacketReceiver* observeSubject)
+PlayerData::PlayerData(PacketReceiver* observeSubject) : _nullPacket()
 {
 	_subject = observeSubject;
 	_subject->attach(this);
@@ -15,35 +15,42 @@ PlayerData::~PlayerData()
 
 void PlayerData::update(Subject* changedSubject)
 {
-	if(changedSubject != _subject)
-		return;
-
-	if(isOfInterest(_subject->getPacket()) == false)
-		return;
-
-	string userName = _subject->getPacket()->userName.c_str();
-
-	for(list<PlayerPacket>::iterator i=players.begin(); i!=players.end(); ++i)
+	if(changedSubject != _subject ||
+		isOfInterest(_subject->getPacket()) == false)
 	{
-		if((*i).userName == userName) {
-			_response.packet_type = PacketTypes::REGISTER_FAIL;
-			_serializedPacket << _response;
-			_subject->respond(&_serializedPacket, _subject->getSender(), _subject->getSenderPort());
-
-			_response = _nullPacket;
-			_serializedPacket.clear();
-			return;
-		}
+		return;
 	}
 
+	if(playerExists(_subject->getPacket()->userName) == true)
+	{
+		responseFailure();
+		return;
+	}
+
+	addNewPlayer();
+
+	responseSucces();
+}
+
+void PlayerData::responseFailure()
+{
+	_response.packet_type = PacketTypes::REGISTER_FAIL;
+
+	_serializedPacket << _response;
+	_subject->respond(&_serializedPacket, _subject->getSender(), _subject->getSenderPort());
+
+	_response = _nullPacket;
+	_serializedPacket.clear();
+}
+
+void PlayerData::responseSucces()
+{
 	_response.packet_type = PacketTypes::REGISTER_SUCCES;
+	broadCastPlayerList();
+}
 
-	PlayerPacket playerData; 
-	playerData.userName = _subject->getPacket()->userName;
-	playerData.ipAdress = _subject->getSender()->toString();
-	playerData.port = _subject->getSenderPort();
-	players.push_back(playerData);
-
+void PlayerData::broadCastPlayerList()
+{
 	for(list<PlayerPacket>::iterator i=players.begin(); i!=players.end(); ++i)
 	{
 		_response.p_list.push_back(*i);
@@ -59,4 +66,24 @@ void PlayerData::update(Subject* changedSubject)
 
 	_response = _nullPacket;
 	_serializedPacket.clear();
+}
+
+bool PlayerData::playerExists(string playerName)
+{
+	for(list<PlayerPacket>::iterator i=players.begin(); i!=players.end(); ++i)
+	{
+		if((*i).userName == playerName) {
+			return true;
+		}
+	}
+	return false;
+}
+
+void PlayerData::addNewPlayer()
+{
+	PlayerPacket playerData; 
+	playerData.userName = _subject->getPacket()->userName;
+	playerData.ipAdress = _subject->getSender()->toString();
+	playerData.port = _subject->getSenderPort();
+	players.push_back(playerData);
 }

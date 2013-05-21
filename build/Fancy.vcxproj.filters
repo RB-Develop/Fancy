@@ -87,6 +87,9 @@
     <ClInclude Include="..\include\Engine\Skybox.h">
       <Filter>Header Files\Component</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\Engine\CGUITexturedSkin.h">
+      <Filter>Header Files\Interface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\Engine\PrimitiveComponent.cpp">
@@ -112,6 +115,9 @@
     </ClCompile>
     <ClCompile Include="..\source\Engine\Skybox.cpp">
       <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Engine\CGUITexturedSkin.cpp">
+      <Filter>Source Files\Interface</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

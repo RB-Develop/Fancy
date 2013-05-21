@@ -7,13 +7,16 @@
 
 #include <Engine/Core.h>
 #include <Engine/Interface.h>
-#include <Engine/Networker.h>
+
 #include <NetworkData.h>
+#include "NetworkHandler.h"
 
 struct SAppContext
 {
 	fancy::Core *core;
 	fancy::scene::Scene* currentScene;
+	NetworkHandler* net;
+	bool createNew;
 };
 
 enum
@@ -21,8 +24,10 @@ enum
 	GUI_ID_QUIT_BUTTON = 101,
 	GUI_ID_GAME_SCENE,
 	GUI_ID_NEW_LOBBY,
-	GUI_EDIT_NAME,
-	GUI_CONFIRM_NAME
+	GUI_ID_EDIT_NAME,
+	GUI_ID_CONFIRM_NAME,
+	GUI_ID_LOBBY_LIST,
+	GUI_ID_REFRESH_LOBBYLIST
 };
 
 class MenuEventReceiver : public irr::IEventReceiver

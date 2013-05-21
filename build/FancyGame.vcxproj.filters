@@ -36,9 +36,6 @@
     <ClCompile Include="..\source\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\ExtraScene.cpp">
-      <Filter>Source Files\Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\MainMenu.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
@@ -50,6 +47,12 @@
     </ClCompile>
     <ClCompile Include="..\source\NetworkHandler.cpp">
       <Filter>Source Files\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\LobbyListMenu.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\GameScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

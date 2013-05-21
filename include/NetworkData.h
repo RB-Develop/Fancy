@@ -10,15 +10,17 @@
 enum PacketTypes {
 	// Client types
     INIT_CONNECTION = 0,
-	REGISTER_PLAYER,
+	REQUEST_REGISTER_PLAYER,
 	REQUEST_NEW_LOBBY,
-	JOIN_LOBBY,
-    ACTION_EVENT,
+	REQUEST_JOIN_LOBBY,
+    
+	ACTION_EVENT,
 
 	// Server types
 	REGISTER_SUCCES,
 	REGISTER_FAIL,
-	PLAYER_LIST
+	REQUEST_PLAYER_LIST,
+	REQUEST_LOBBY_LIST
 };
 
 struct PlayerPacket
@@ -43,20 +45,11 @@ struct FancyPacket {
 };
 
 /*
-* Player.
-*/
-struct Player
-{
-	std::string name, adress;
-	int team;
-};
-
-/*
 * Team struct.
 */
 struct Team
 {
-	std::list<Player> players;
+	std::list<PlayerPacket> players;
 };
 
 /*
@@ -65,7 +58,7 @@ struct Team
 struct Lobby
 {
 	int size;
-	std::list<Player> players;
+	std::list<PlayerPacket> players;
 	std::list<Team> teams;
 };
 

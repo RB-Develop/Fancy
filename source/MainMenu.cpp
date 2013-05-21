@@ -1,10 +1,11 @@
 #include <Engine/Scene.h>
-#include <Engine/PrimitiveComponent.h>
-#include <Engine/CameraComponent.h>
 #include <Engine/Interface.h>
 #include <Engine/Core.h>
+
 #include "MenuEventReceiver.h"
 #include "NetworkHandler.h"
+
+#include "LobbyListMenu.cpp"
 
 using namespace fancy;
 using namespace fancy::scene;
@@ -23,11 +24,15 @@ public:
 	{
 		context.core = _core;
 		context.currentScene = this;
+
 		_net->attachScene(this);
 	}
 
 	~MainMenu()
 	{
+		_net->detachScene(this);
+		_net = NULL;
+
 		_core->resetReceiver();
 		_core = NULL;
 
@@ -42,23 +47,27 @@ public:
 
 		_interface->createButton(_core->getDriver()->getScreenSize().Width/2-75, 150, 
 			150, 30, 
-			GUI_ID_NEW_LOBBY, 0, L"New lobby");
+			GUI_ID_LOBBY_LIST, 0, L"Join a game.");
 
 		_interface->createButton(_core->getDriver()->getScreenSize().Width/2-75, 250, 
 			150, 30, 
-			GUI_ID_GAME_SCENE, 0, L"Start scene");
+			GUI_ID_NEW_LOBBY, 0, L"Start new game.");
 
 		_core->addCustomReceiver(new MenuEventReceiver(context));
 	}
 
 	void requestNextScene()
 	{
+		if(context.createNew == true) {
+			_net->sendPacketType(PacketTypes::REQUEST_NEW_LOBBY);
+			printf("New lobby\n");
+		}
+		else {
+			_core->setActiveScene(new LobbyListMenu(_core, _interface, _net));
+		}
 	}
 
-	void notify(void* data)
-	{
-
-	}
+	void notify(void* data){}
 
 	void update()
 	{
