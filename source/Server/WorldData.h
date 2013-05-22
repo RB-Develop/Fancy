@@ -14,6 +14,7 @@ public:
 	virtual ~WorldData();
 
 	virtual void update(Subject*);
+	virtual void handleClientDisconnect(std::string ipAdress);
 private:
 	PacketReceiver* _subject;
 };

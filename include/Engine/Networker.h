@@ -2,11 +2,9 @@
 #define FANCY_NETWORKER
 
 #include <SFML/Network.hpp>
-#include <Engine/PacketHandler.h>
 
 namespace fancy {
-	namespace network {
-	
+	namespace network {	
 		class Networker
 		{		
 		public:		
@@ -14,18 +12,41 @@ namespace fancy {
 			void setHostIp(std::string hostAdress);
 
 			bool openUdpSocket(unsigned short port);
-			bool sendPacket(sf::Packet* packet);
+			bool openTcpSocket(unsigned short port);
 
-			sf::Packet* receiveData();
-		private:						
+			/*
+			* Class for sending packets using UDP or TCP.
+			*
+			* @param packet
+			* The packet to send.
+			* @param protocol
+			* The parameter defining how the packet should be send; 0 is UDP, 1 is TCP.
+			*/
+			bool sendPacket(sf::Packet* packet, unsigned int protocol = PROTOCOL_UDP);
+
+			sf::Packet* receiveDataUdp();
+			sf::Packet* receiveDataTcp();
+		private:		
+			enum Protocol
+			{
+				PROTOCOL_UDP = 0,
+				PROTOCOL_TCP
+			};
+
 			unsigned short _hostPort;
 			sf::IpAddress _hostAdress;
-			sf::UdpSocket _socket;
-			
+
+			sf::UdpSocket _socketUdp;
+			sf::TcpSocket _socketTcp;
+
+			sf::Packet _receivedPacketUdp;
 			unsigned short _receivedFromPort;
 			sf::IpAddress _receivedFromAdress;
 
-			sf::Packet _receivedPacket;
+			sf::Packet _receivedPacketTcp;
+
+			bool sendUdp(sf::Packet* packet);
+			bool sendTcp(sf::Packet* packet);
 		};
 
 	}

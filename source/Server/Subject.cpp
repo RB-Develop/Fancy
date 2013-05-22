@@ -19,3 +19,13 @@ void Subject::notify()
 		(*iter)->update(this);
 	}
 }
+
+void Subject::notifyClientDisconnect(std::string ipAdress)
+{
+	std::list<Observer*>::iterator iter;
+
+	for(iter = _observers.begin(); iter != _observers.end(); iter++)
+	{
+		(*iter)->handleClientDisconnect(ipAdress);
+	}
+}

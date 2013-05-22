@@ -15,6 +15,7 @@ public:
 	virtual ~PlayerData();
 
 	virtual void update(Subject*);
+	virtual void handleClientDisconnect(std::string ipAdress);
 private:
 	PacketReceiver* _subject;
 	std::list<PlayerPacket> players;
@@ -23,6 +24,7 @@ private:
 	FancyPacket _response;
 	const FancyPacket _nullPacket;
 
+	void handleRegisterRequest();
 	bool playerExists(std::string playerName);
 
 	void responseFailure();

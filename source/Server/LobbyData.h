@@ -15,6 +15,7 @@ public:
 	virtual ~LobbyData();
 
 	virtual void update(Subject* subject);	
+	virtual void handleClientDisconnect(std::string ipAdress);
 private:
 	PacketReceiver* _subject;
 

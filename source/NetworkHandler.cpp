@@ -3,21 +3,21 @@
 using namespace fancy;
 using namespace fancy::network;
 
-NetworkHandler::NetworkHandler()
+NetworkHandler::NetworkHandler() : _nullPacket()
 {
 	_networker = new Networker();
 	_networker->openUdpSocket(0);
+	_networker->openTcpSocket(53000);
 }
 
 NetworkHandler::~NetworkHandler()
 {
-	printf("Destructor of networkhandler called\n");
 	delete _networker;
 }
 
 void NetworkHandler::run()
 {
-	sf::Packet* packet = _networker->receiveData();
+	sf::Packet* packet = _networker->receiveDataUdp();
 
 	if(packet == NULL)
 	{
@@ -41,14 +41,14 @@ void NetworkHandler::setUserName(std::string userName)
 	_userName = userName;
 }
 
-void NetworkHandler::sendPacketType(unsigned int type)
+void NetworkHandler::sendPacketType(unsigned int type, unsigned int protocol)
 {
 	_sendPacket.packet_type = type;
 	_sendPacket.userName = _userName;
 
 	_serializedPacket << _sendPacket;
 
-	_networker->sendPacket(&_serializedPacket);
+	_networker->sendPacket(&_serializedPacket, protocol);
 
 	_sendPacket = _nullPacket;
 	_serializedPacket.clear();

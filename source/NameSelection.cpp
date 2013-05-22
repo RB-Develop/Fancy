@@ -70,7 +70,7 @@ public:
 		std::string name = tempdata;
 
 		_net->setUserName(name);
-		_net->sendPacketType(PacketTypes::REQUEST_REGISTER_PLAYER);
+		_net->sendPacketType(PacketTypes::REQUEST_REGISTER_PLAYER, PROTOCOL_TCP);
 
 		_sceneRequest = true;
 		startTime = clock();

@@ -16,7 +16,7 @@ LobbyData::~LobbyData()
 void LobbyData::update(Subject* changedSubject)
 {
 	if(changedSubject != _subject ||
-		isOfInterest(_subject->getPacket()) == false)
+		isOfInterest(_subject->getPacketUdp()) == false)
 	{
 		return;
 	}
@@ -24,6 +24,10 @@ void LobbyData::update(Subject* changedSubject)
 	printf("Works \n");
 }
 
-void LobbyData::createNewLobby(std::string lobbyName)
+void LobbyData::handleClientDisconnect(string ipAdress)
+{
+}
+
+void LobbyData::createNewLobby(string lobbyName)
 {
 }

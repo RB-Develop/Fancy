@@ -16,6 +16,7 @@ public:
 	virtual void removeInterest(unsigned int interest);
 
 	virtual void update(Subject* changedSubject) = 0;
+	virtual void handleClientDisconnect(std::string ipAdress) = 0;
 protected:
 	Observer() { };
 

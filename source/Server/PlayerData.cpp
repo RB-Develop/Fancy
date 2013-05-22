@@ -16,12 +16,26 @@ PlayerData::~PlayerData()
 void PlayerData::update(Subject* changedSubject)
 {
 	if(changedSubject != _subject ||
-		isOfInterest(_subject->getPacket()) == false)
+		isOfInterest(_subject->getPacketUdp()) == false)
 	{
 		return;
 	}
+	
+	switch(_subject->getPacketUdp()->packet_type){
+	case PacketTypes::REQUEST_REGISTER_PLAYER:
+		handleRegisterRequest();
+		break;
+	}
+}
 
-	if(playerExists(_subject->getPacket()->userName) == true)
+void PlayerData::handleClientDisconnect(string ipAdress)
+{
+	printf("ohnoez, a player disconnected!\n");
+}
+
+void PlayerData::handleRegisterRequest()
+{
+	if(playerExists(_subject->getPacketUdp()->userName) == true)
 	{
 		responseFailure();
 		return;
@@ -82,7 +96,7 @@ bool PlayerData::playerExists(string playerName)
 void PlayerData::addNewPlayer()
 {
 	PlayerPacket playerData; 
-	playerData.userName = _subject->getPacket()->userName;
+	playerData.userName = _subject->getPacketUdp()->userName;
 	playerData.ipAdress = _subject->getSender()->toString();
 	playerData.port = _subject->getSenderPort();
 	players.push_back(playerData);

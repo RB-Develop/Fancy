@@ -7,6 +7,12 @@
 
 #define MAX_PACKET_SIZE 10000
 
+enum FancyProtocol
+{
+	PROTOCL_UDP = 0,
+	PROTOCOL_TCP
+};
+
 enum PacketTypes {
 	// Client types
     INIT_CONNECTION = 0,
@@ -20,7 +26,8 @@ enum PacketTypes {
 	REGISTER_SUCCES,
 	REGISTER_FAIL,
 	REQUEST_PLAYER_LIST,
-	REQUEST_LOBBY_LIST
+	REQUEST_LOBBY_LIST,
+	PLAYER_DISCONNECT
 };
 
 struct PlayerPacket

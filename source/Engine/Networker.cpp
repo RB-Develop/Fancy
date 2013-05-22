@@ -20,20 +20,49 @@ void Networker::setHostIp(string hostAdress)
 bool Networker::openUdpSocket(unsigned short port)
 {
 	if(port == 0)
-		port = _socket.AnyPort;
+		port = _socketUdp.AnyPort;
 
-	if (_socket.bind(port) != Socket::Done)
+	if (_socketUdp.bind(port) != Socket::Done)
 	{
 		return false;
 	}	
-	_socket.setBlocking(false);
-	printf("UDP socket set up on port %i.\n", port);
+	_socketUdp.setBlocking(false);
+	printf("UDP socket set up on port %i.\n", _socketUdp.getLocalPort());
 	return true;
 }
 
-bool Networker::sendPacket(Packet* packet)
+bool Networker::openTcpSocket(unsigned short port)
 {
-	if (_socket.send(*packet, _hostAdress, _hostPort) != Socket::Done)
+	if(port == 0)
+		port = _socketTcp.AnyPort;
+
+	if(_socketTcp.connect(_hostAdress, port) != Socket::Done)
+	{
+		printf("Cannot connect to host [TCP].\n");
+		return false;
+	}
+	_socketTcp.setBlocking(false);
+	printf("TCP socket set up on port %i.\n", _socketTcp.getLocalPort());
+	return true;
+}
+
+bool Networker::sendPacket(Packet* packet, unsigned int protocol)
+{
+	switch(protocol)
+	{
+	case PROTOCOL_UDP:
+		return sendUdp(packet);
+		break;
+	case PROTOCOL_TCP:
+		return sendTcp(packet);
+		break;
+	}
+	return false;
+}
+
+bool Networker::sendUdp(Packet* packet)
+{
+	if (_socketUdp.send(*packet, _hostAdress, _hostPort) != Socket::Done)
 	{
 		printf("Can't send");
 		return false;
@@ -41,26 +70,21 @@ bool Networker::sendPacket(Packet* packet)
 	return true;
 }
 
-Packet* Networker::receiveData()
+bool Networker::sendTcp(Packet* packet)
 {
-	_socket.receive(_receivedPacket, _receivedFromAdress, _receivedFromPort);
-
-	if(_receivedPacket.getDataSize() <= 0)
-		return NULL;
-
-	if(_receivedFromAdress != _hostAdress && _receivedFromPort != _hostPort) {
-		printf("Packet injection detected, cheater on the loose. \n");
-		return NULL;
+	if (_socketTcp.send(*packet) != Socket::Done)
+	{
+		printf("Can't send");
+		return false;
 	}
-	
-	return &_receivedPacket;
+	return true;
 }
 
-/*char* Networker::receiveData()
+Packet* Networker::receiveDataUdp()
 {
-	_socket.receive(_data, 1000, _receivedSize, _receivedFromAdress, _receivedFromPort);
+	_socketUdp.receive(_receivedPacketUdp, _receivedFromAdress, _receivedFromPort);
 
-	if(_receivedSize <= 0)
+	if(_receivedPacketUdp.getDataSize() <= 0)
 		return NULL;
 
 	if(_receivedFromAdress != _hostAdress && _receivedFromPort != _hostPort) {
@@ -68,5 +92,15 @@ Packet* Networker::receiveData()
 		return NULL;
 	}
 	
-	return _data;
-}*/
+	return &_receivedPacketUdp;
+}
+
+Packet* Networker::receiveDataTcp()
+{
+	_socketTcp.receive(_receivedPacketTcp);
+
+	if(_receivedPacketTcp.getDataSize() <= 0)
+		return NULL;
+	
+	return &_receivedPacketTcp;
+}

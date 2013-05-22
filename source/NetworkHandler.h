@@ -17,7 +17,7 @@ public:
 
 	void run();
 	void setUserName(std::string userName);
-	void sendPacketType(unsigned int type);
+	void sendPacketType(unsigned int type, unsigned int = PROTOCL_UDP);
 	void attachScene(fancy::scene::Scene*);
 	void detachScene(fancy::scene::Scene*);
 
