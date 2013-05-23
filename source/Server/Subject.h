@@ -17,9 +17,7 @@ public:
 	* Notifies all the registered Observer objects in the
 	* observers list.
 	*/
-	virtual void notify();
-
-	virtual void notifyClientDisconnect(std::string ipAdress);
+	virtual void notify(FancyPacket) = 0;
 protected:
 	Subject() { };
 private:

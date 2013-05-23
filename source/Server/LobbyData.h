@@ -3,26 +3,16 @@
 
 #include <list>
 
-#include "Observer.h"
-#include "Subject.h"
-#include "PacketReceiver.h"
 #include <NetworkData.h>
 
-class LobbyData : public Observer
+class LobbyData
 {
 public:
-	LobbyData(PacketReceiver* observeSubject);
+	LobbyData();
 	virtual ~LobbyData();
 
-	virtual void update(Subject* subject);	
-	virtual void handleClientDisconnect(std::string ipAdress);
+	virtual void update();	
 private:
-	PacketReceiver* _subject;
-
-	sf::Packet _serializedPacket;
-	FancyPacket _response;
-	const FancyPacket _nullPacket;
-
 	void createNewLobby(const std::string lobbyName);
 	void removeLobby(const std::string lobbyName);
 };

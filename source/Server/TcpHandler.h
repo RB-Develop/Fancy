@@ -19,13 +19,16 @@ public:
 	void acceptConnections();
 	void keepSocketsAlive();
 
-	FancyPacket receiveData();
+	std::list<sf::Packet> receiveData();
 	void sendData(sf::Packet* packet, std::string recipient);
 protected:
 private:
 	sf::Mutex _mutex;
 	clock_t startTime;
 	float secondsPassed;
+
+	sf::Packet* _nullPacket;
+	std::list<sf::Packet> _serializedPackets;
 
 	sf::TcpListener _listener;
 	std::list<sf::TcpSocket*> _connectedClients;	

@@ -3,21 +3,16 @@
 
 #include <list>
 
-#include "Observer.h"
-#include "Subject.h"
-#include "PacketReceiver.h"
 #include <NetworkData.h>
 
-class PlayerData : public Observer
+class PlayerData
 {
 public:
-	PlayerData(PacketReceiver*);
+	PlayerData();
 	virtual ~PlayerData();
 
-	virtual void update(Subject*);
-	virtual void handleClientDisconnect(std::string ipAdress);
+	virtual void update();
 private:
-	PacketReceiver* _subject;
 	std::list<PlayerPacket> players;
 
 	sf::Packet _serializedPacket;

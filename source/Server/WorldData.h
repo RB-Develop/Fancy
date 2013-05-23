@@ -3,20 +3,14 @@
 
 #include <set>
 
-#include "Observer.h"
-#include "Subject.h"
-#include "PacketReceiver.h"
 
-class WorldData : public Observer
+class WorldData
 {
 public:
-	WorldData(PacketReceiver*);
+	WorldData();
 	virtual ~WorldData();
 
-	virtual void update(Subject*);
-	virtual void handleClientDisconnect(std::string ipAdress);
-private:
-	PacketReceiver* _subject;
+	virtual void update();
 };
 
 #endif 

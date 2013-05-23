@@ -36,9 +36,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\source\Server\PacketReceiver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\source\Server\Subject.h">
       <Filter>Header Files\Base</Filter>
     </ClInclude>
@@ -51,21 +48,27 @@
     <ClInclude Include="..\..\source\Server\PlayerData.h">
       <Filter>Header Files\Observers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\Server\WorldData.h">
-      <Filter>Header Files\Observers</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\source\Server\LobbyData.h">
       <Filter>Header Files\Observers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\Server\TcpHandler.h">
       <Filter>Header Files\SocketHandlers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\source\Server\UdpHandler.h">
+      <Filter>Header Files\SocketHandlers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Server\Server.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Server\PacketHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Server\WorldData.h">
+      <Filter>Header Files\Observers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\Server\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\Server\PacketReceiver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\Server\Observer.cpp">
@@ -85,6 +88,15 @@
     </ClCompile>
     <ClCompile Include="..\..\source\Server\TcpHandler.cpp">
       <Filter>Source Files\SocketHandlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Server\UdpHandler.cpp">
+      <Filter>Source Files\SocketHandlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Server\Server.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Server\PacketHandler.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

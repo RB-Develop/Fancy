@@ -14,20 +14,24 @@
     <ClInclude Include="..\..\include\NetworkData.h" />
     <ClInclude Include="..\..\source\Server\LobbyData.h" />
     <ClInclude Include="..\..\source\Server\Observer.h" />
-    <ClInclude Include="..\..\source\Server\PacketReceiver.h" />
+    <ClInclude Include="..\..\source\Server\PacketHandler.h" />
     <ClInclude Include="..\..\source\Server\PlayerData.h" />
+    <ClInclude Include="..\..\source\Server\Server.h" />
     <ClInclude Include="..\..\source\Server\Subject.h" />
     <ClInclude Include="..\..\source\Server\TcpHandler.h" />
+    <ClInclude Include="..\..\source\Server\UdpHandler.h" />
     <ClInclude Include="..\..\source\Server\WorldData.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\Server\LobbyData.cpp" />
     <ClCompile Include="..\..\source\Server\main.cpp" />
     <ClCompile Include="..\..\source\Server\Observer.cpp" />
-    <ClCompile Include="..\..\source\Server\PacketReceiver.cpp" />
+    <ClCompile Include="..\..\source\Server\PacketHandler.cpp" />
     <ClCompile Include="..\..\source\Server\PlayerData.cpp" />
+    <ClCompile Include="..\..\source\Server\Server.cpp" />
     <ClCompile Include="..\..\source\Server\Subject.cpp" />
     <ClCompile Include="..\..\source\Server\TcpHandler.cpp" />
+    <ClCompile Include="..\..\source\Server\UdpHandler.cpp" />
     <ClCompile Include="..\..\source\Server\WorldData.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

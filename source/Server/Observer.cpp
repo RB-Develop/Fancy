@@ -1,4 +1,4 @@
-#include "Observer.h"
+/*#include "Observer.h"
 
 void Observer::setInterest(unsigned int interest)
 {
@@ -31,4 +31,4 @@ bool Observer::isOfInterest(FancyPacket* packet)
 	if(packet->packet_type == _interest)
 		return true;
 	return false;
-}
+}*/

@@ -2,30 +2,17 @@
 
 using namespace std;
 
-LobbyData::LobbyData(PacketReceiver* observeSubject) : _nullPacket()
+LobbyData::LobbyData()
 {
-	_subject = observeSubject;
-	_subject->attach(this);
 }
 
 LobbyData::~LobbyData()
 {
-	_subject->detach(this);
 }
 
-void LobbyData::update(Subject* changedSubject)
+void LobbyData::update()
 {
-	if(changedSubject != _subject ||
-		isOfInterest(_subject->getPacketUdp()) == false)
-	{
-		return;
-	}
-
 	printf("Works \n");
-}
-
-void LobbyData::handleClientDisconnect(string ipAdress)
-{
 }
 
 void LobbyData::createNewLobby(string lobbyName)

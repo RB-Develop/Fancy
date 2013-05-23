@@ -11,6 +11,8 @@ TcpHandler::TcpHandler()
 	}
 	startTime = clock();
 	secondsPassed = 0;
+
+	_nullPacket = new Packet();
 }
 
 TcpHandler::~TcpHandler()
@@ -20,7 +22,6 @@ TcpHandler::~TcpHandler()
 void TcpHandler::acceptConnections()
 {
 	TcpSocket* client = new TcpSocket();
-	client->setBlocking(false);
 
 	if (_listener.accept(*client) != Socket::Done)
 	{
@@ -28,9 +29,12 @@ void TcpHandler::acceptConnections()
 		return;
 	}
 
+	client->setBlocking(false);
+	
 	_mutex.lock();
 	_connectedClients.push_back(client);
 	_mutex.unlock();
+	printf("Got a new connection\n");
 }
 
 void TcpHandler::keepSocketsAlive()
@@ -39,7 +43,7 @@ void TcpHandler::keepSocketsAlive()
 	if(secondsPassed >= 1)
 	{
 		_mutex.lock();
-		for(list<sf::TcpSocket*>::iterator it = _connectedClients.begin(); it != _connectedClients.end(); it++)
+		for(list<TcpSocket*>::iterator it = _connectedClients.begin(); it != _connectedClients.end(); it++)
 		{
 			if((*it)->send(" ", 1) == sf::Socket::Disconnected)
 			{
@@ -51,32 +55,28 @@ void TcpHandler::keepSocketsAlive()
 	}
 }
 
-FancyPacket TcpHandler::receiveData()
+list<Packet> TcpHandler::receiveData()
 {
 	_mutex.lock();
 
-	Packet serializedPacket;
-	FancyPacket packet;
+	_serializedPackets.clear();
 
-	for(list<sf::TcpSocket*>::iterator it = _connectedClients.begin(); it != _connectedClients.end(); it++)
+	for(list<TcpSocket*>::iterator it = _connectedClients.begin(); it != _connectedClients.end(); it++)
 	{
-		(*it)->receive(serializedPacket);
-
-		if(serializedPacket.getDataSize() <= 0)
-		{
-			serializedPacket >> packet;
-			_mutex.unlock();
-			return packet;
-		}
+		Packet tempPacket;
+		(*it)->receive(tempPacket);
+		if(tempPacket.getDataSize() > 0) 
+			_serializedPackets.push_back(tempPacket);
 	}
 
 	_mutex.unlock();
+	return _serializedPackets;
 }
 
 void TcpHandler::sendData(Packet* packet, string recipient)
 {
 	_mutex.lock();
-	for(list<sf::TcpSocket*>::iterator it = _connectedClients.begin(); it != _connectedClients.end(); it++)
+	for(list<TcpSocket*>::iterator it = _connectedClients.begin(); it != _connectedClients.end(); it++)
 	{
 		if((*it)->getRemoteAddress().toString() == recipient)
 		{

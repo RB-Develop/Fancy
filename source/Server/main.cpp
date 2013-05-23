@@ -1,39 +1,33 @@
-#include <NetworkData.h>
+#include "Server.h"
+#include "TcpHandler.h"
+#include "UdpHandler.h"
+#include "PacketHandler.h"
 
-#include "PacketReceiver.h"
-#include "PlayerData.h"
-#include "WorldData.h"
-#include "LobbyData.h"
+#include <SFML/System.hpp>
 
-void acceptNewClients(PacketReceiver* receiver)
+void acceptNewClients(TcpHandler* tcp)
 {
 	while(true)
-		receiver->acceptNewConnections();
+		tcp->acceptConnections();
 }
 
 int main()
 {	
-	PacketReceiver receiver;
+	Server* server = new Server();
+	TcpHandler* tcpHandler = new TcpHandler();
+	UdpHandler* udpHandler = new UdpHandler();
 
-	sf::Thread acceptThread(&acceptNewClients, &receiver);
+	PacketHandler* packetHandler = new PacketHandler(udpHandler, tcpHandler);
+	packetHandler->attach(server);
 
-	Observer* playerData = new PlayerData(&receiver);
-	playerData->addInterest(PacketTypes::REQUEST_REGISTER_PLAYER);
-	playerData->addInterest(PacketTypes::PLAYER_DISCONNECT);
+	sf::Thread acceptThread(&acceptNewClients, tcpHandler);
 
-	Observer* lobbyData = new LobbyData(&receiver);
-	lobbyData->addInterest(PacketTypes::REQUEST_LOBBY_LIST);
-	lobbyData->addInterest(PacketTypes::REQUEST_NEW_LOBBY);
-	lobbyData->addInterest(PacketTypes::REQUEST_JOIN_LOBBY);
-
-	Observer* worldData = new WorldData(&receiver);
-	worldData->setInterest(PacketTypes::ACTION_EVENT);
-	
 	acceptThread.launch();
 
 	while(true)
 	{
-		receiver.run();
+		packetHandler->receiveData();
+		server->run();
 	}
 
 	return 0;
