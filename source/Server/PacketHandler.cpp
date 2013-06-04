@@ -15,44 +15,47 @@ PacketHandler::~PacketHandler()
 	_tcpHandler = NULL;
 }
 
-void PacketHandler::sendData(FancyPacket packet, string ipAddress, unsigned int protocol, unsigned short port)
+void PacketHandler::sendData(FancyPacket packet, string ipAddress, unsigned short port)
 {
 	Packet sendPacket;
 	sendPacket<<packet;
 
-	switch(protocol)
-	{
-	case PROTOCL_UDP:
-		_udpHandler->sendData(&sendPacket, &IpAddress(ipAddress), port);
-		break;
-	case PROTOCOL_TCP:
-		_tcpHandler->sendData(&sendPacket, ipAddress);
-		break;
-	}
+	_udpHandler->sendData(&sendPacket, &IpAddress(ipAddress), port);
+}
+
+void PacketHandler::sendData(FancyPacket packet, TcpSocket* socket)
+{
+	Packet sendPacket;
+	sendPacket<<packet;
+
+	_tcpHandler->sendData(&sendPacket, socket);
 }
 
 void PacketHandler::receiveData()
 {
 	receiveTcpData();
 	receiveUdpData();
+	distributeTcpData();
 }
 
 void PacketHandler::receiveTcpData()
 {		
-	list<Packet> tcpSerData = _tcpHandler->receiveData();
+	tcpSerData = _tcpHandler->receiveData();
 
 	if(tcpSerData.size() <= 0) {
 		return;
 	}
 
-	for(list<Packet>::iterator it = tcpSerData.begin(); it != tcpSerData.end(); it++){
-		if((*it).getDataSize() > 0)
-		{
-			FancyPacket tcpData;
-			(*it)>>tcpData;
-			notify(tcpData);
-		}
+	for(list<pair<Packet, TcpSocket*>>::iterator it = tcpSerData.begin(); it != tcpSerData.end(); it++){
+		FancyPacket tcpData;
+		(*it).first >> tcpData;
+
+		tcpData.ipAdress = (*it).second->getRemoteAddress().toString();
+		tcpData.tcpSocket = (*it).second;
+
+		_tcpUnserData.push_back(tcpData);
 	}
+
 	tcpSerData.clear();
 }
 
@@ -70,6 +73,15 @@ void PacketHandler::receiveUdpData()
 
 	notify(udpData);
 	delete udpSerData;
+}
+
+void PacketHandler::distributeTcpData()
+{
+	for(list<FancyPacket>::iterator iter = _tcpUnserData.begin(); iter != _tcpUnserData.end(); iter++)
+	{
+		notify(*iter);
+	}
+	_tcpUnserData.clear();
 }
 
 void PacketHandler::notify(FancyPacket packet)

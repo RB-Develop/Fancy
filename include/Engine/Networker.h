@@ -10,6 +10,8 @@ namespace fancy {
 		{		
 		public:		
 			Networker();
+			~Networker();
+
 			void setHostIp(std::string hostAdress);
 
 			bool openUdpSocket(unsigned short port);
@@ -26,7 +28,7 @@ namespace fancy {
 			bool sendPacket(sf::Packet* packet, unsigned int protocol = PROTOCOL_UDP);
 
 			sf::Packet* receiveDataUdp();
-			void receiveDataTcp();
+			sf::Packet receiveDataTcp();
 		private:		
 			enum Protocol
 			{

@@ -13,6 +13,8 @@ Player::Player(string userName, string ipAddress, TcpSocket* tcpSocket, unsigned
 
 Player::~Player()
 {
+	_tcpSocket->disconnect();
+	delete _tcpSocket;
 }
 
 std::string Player::getUserName()

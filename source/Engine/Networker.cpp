@@ -12,6 +12,11 @@ Networker::Networker()
 	_hostAdress = _receivedFromAdress = "localhost";
 }
 
+Networker::~Networker()
+{
+	_socketTcp.disconnect();
+}
+
 void Networker::setHostIp(string hostAdress)
 {
 	_hostAdress = hostAdress;
@@ -43,7 +48,7 @@ bool Networker::openTcpSocket(unsigned short port)
 		return false;
 	}
 
-	//_socketTcp.setBlocking(false);
+	_socketTcp.setBlocking(false);
 	printf("TCP socket set up on port %i.\n", _socketTcp.getLocalPort());
 	return true;
 }
@@ -79,7 +84,7 @@ bool Networker::sendTcp(Packet* packet)
 {
 	_lock.lock();
 
-	if (_socketTcp.send(*packet) != Socket::Done)
+	if (_socketTcp.send(packet->getData(), sizeof(*packet)) != Socket::Done)
 	{
 		printf("Can't send");
 		_lock.unlock();
@@ -113,18 +118,25 @@ Packet* Networker::receiveDataUdp()
 	return &_receivedPacketUdp;
 }
 
-void Networker::receiveDataTcp()
+Packet Networker::receiveDataTcp()
 {
 	Packet _receivedPacketTcp = Packet();
-	_receivedPacketTcp.clear();
+	char data[100];
+	size_t size;
 
 	_lock.lock();
 	
-	_socketTcp.receive(_receivedPacketTcp);
-	
+	_socketTcp.receive(data, 100, size);
+
+	_receivedPacketTcp.append(data, size);
+
 	_packets.push_back(_receivedPacketTcp);
-	
-	_receivedPacketTcp.clear();
 
 	_lock.unlock();
+
+	if(size > 4)
+		return _receivedPacketTcp;
+
+	_receivedPacketTcp.clear();
+	return _receivedPacketTcp;
 }

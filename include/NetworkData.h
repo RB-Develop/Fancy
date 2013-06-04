@@ -43,6 +43,10 @@ struct Players
 };
 
 struct FancyPacket {
+	FancyPacket()
+	{
+		p_listSize = 0;
+	}
     unsigned int packet_type;
 	std::string userName;
 	std::string ipAdress;

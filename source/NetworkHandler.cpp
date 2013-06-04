@@ -20,9 +20,9 @@ NetworkHandler::~NetworkHandler()
 void NetworkHandler::run()
 {
 	_networker->receiveDataUdp();
-	_networker->receiveDataTcp();
+	_tcpPacket = _networker->receiveDataTcp();
 
-	if(_tcpPacket.getDataSize() <= 0)
+	if(_tcpPacket.getDataSize() <= 4)
 	{
 		_tcpPacket.clear();
 		return;

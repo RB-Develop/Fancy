@@ -16,11 +16,18 @@ public:
 	TcpHandler();
 	~TcpHandler();
 
+	void rebind(unsigned short);
 	void acceptConnections();
-	void keepSocketsAlive();
 
-	std::list<sf::Packet> receiveData();
-	void sendData(sf::Packet* packet, std::string recipient);
+	/*
+	This function keeps all the TCP socket alive.
+	*/
+	sf::TcpSocket* keepSocketsAlive();
+
+	std::list<std::pair<sf::Packet, sf::TcpSocket*>> receiveData();
+
+	void broadcastData(sf::Packet*);
+	void sendData(sf::Packet*, sf::TcpSocket*);
 protected:
 private:
 	sf::Mutex _mutex;
@@ -28,11 +35,16 @@ private:
 	float secondsPassed;
 
 	sf::Packet* _nullPacket;
-	std::list<sf::Packet> _serializedPackets;
+	std::list<std::pair<sf::Packet, sf::TcpSocket*>> _serializedPackets;
 
 	sf::Packet tempPacket;
 	sf::TcpListener _listener;
-	std::list<sf::TcpSocket*> _connectedClients;	
+	sf::TcpSocket* _deadSocket;
+
+	std::list<sf::TcpSocket*> _connectedClients;
+
+	unsigned short _currentListenerPort, _startListenerPort, _maxListenerPort;
+	const unsigned short _portRange;
 };
 
 #endif

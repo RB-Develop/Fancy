@@ -14,6 +14,8 @@ public:
 	Server(PacketHandler*);
 	~Server();
 
+	void handlePlayerDisconnect(sf::TcpSocket* disconnectedPlayer);
+
 	void run();
 
 	virtual void update(FancyPacket packet);

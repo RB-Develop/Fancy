@@ -9,7 +9,7 @@ namespace fancy {
 		class MeshComponent : Component
 		{
 		public:
-			MeshComponent();
+			MeshComponent(); 
 			~MeshComponent();
 		};
 

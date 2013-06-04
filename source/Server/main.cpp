@@ -24,11 +24,16 @@ int main()
 
 	sf::Thread acceptThread(&acceptNewClients, tcpHandler);
 
+	sf::TcpSocket* dcPlayer;
+
 	acceptThread.launch();
 
 	while(true)
 	{
-		tcpHandler->keepSocketsAlive();
+		dcPlayer = tcpHandler->keepSocketsAlive();
+		if(dcPlayer != NULL)
+			server->handlePlayerDisconnect(dcPlayer);
+
 		packetHandler->receiveData();
 		server->run();
 	}

@@ -12,18 +12,23 @@ PlayerData::~PlayerData()
 
 }
 
-FancyPacket* PlayerData::addPlayer(Player* player)
+void PlayerData::addPlayer(Player* player)
 {
-	FancyPacket* response = new FancyPacket;
+	players.push_back(player);
+}
 
-	if(playerExists(player->getUserName()))
+void PlayerData::removePlayer(sf::TcpSocket* playerSocket)
+{
+	for(list<Player*>::iterator i=players.begin(); i!=players.end(); ++i)
 	{
-		response->packet_type = REGISTER_FAIL;
-		return response;
+		if((*i)->getTcpSocket() == playerSocket) {
+			delete *i;
+			players.remove(*i);
+			return;
+		}
 	}
-
-	response->packet_type = REGISTER_SUCCES;
-	return response;
+	playerSocket->disconnect();
+	delete playerSocket;
 }
 
 bool PlayerData::playerExists(string playerName)

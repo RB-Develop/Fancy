@@ -13,14 +13,16 @@ public:
 	PlayerData();
 	virtual ~PlayerData();
 
-	FancyPacket* addPlayer(Player*);
+	
+	void addPlayer(Player*);
+	void removePlayer(sf::TcpSocket* playerSocket);
+	
+	bool playerExists(std::string playerName);
 private:
 	std::list<Player*> players;
 
 	FancyPacket _response;
-	const FancyPacket _nullPacket;
-
-	bool playerExists(std::string playerName);
+	const FancyPacket _nullPacket;	
 };
 
 #endif 
