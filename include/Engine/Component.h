@@ -13,7 +13,6 @@ namespace fancy {
 
 			const char* getName() { return _name; }
 
-			virtual void init() {};
 			virtual void update() {};
 			virtual void handleMessage(unsigned int, void* data = 0) { };
 		protected:

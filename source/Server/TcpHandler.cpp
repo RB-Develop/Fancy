@@ -30,11 +30,10 @@ void TcpHandler::acceptConnections()
 	}
 
 	client->setBlocking(false);
-	
+
 	_mutex.lock();
 	_connectedClients.push_back(client);
 	_mutex.unlock();
-	printf("Got a new connection\n");
 }
 
 void TcpHandler::keepSocketsAlive()
@@ -45,8 +44,9 @@ void TcpHandler::keepSocketsAlive()
 		_mutex.lock();
 		for(list<TcpSocket*>::iterator it = _connectedClients.begin(); it != _connectedClients.end(); it++)
 		{
-			if((*it)->send(" ", 1) == sf::Socket::Disconnected)
+			if((*it)->send("", 1) == sf::Socket::Disconnected)
 			{
+				printf("Player left");
 				delete *it;
 			}
 		}
@@ -63,10 +63,20 @@ list<Packet> TcpHandler::receiveData()
 
 	for(list<TcpSocket*>::iterator it = _connectedClients.begin(); it != _connectedClients.end(); it++)
 	{
-		Packet tempPacket;
 		(*it)->receive(tempPacket);
-		if(tempPacket.getDataSize() > 0) 
+
+		if(tempPacket.getDataSize() > 0) { 
+			// Hack for abtraction.
+			FancyPacket tempExtracted;
+			tempPacket>>tempExtracted;
+
+			tempExtracted.ipAdress = (*it)->getRemoteAddress().toString();
+			tempExtracted.tcpSocket = (*it);
+
+			tempPacket<<tempExtracted;
+			// End of hack, that wasn't so bad!
 			_serializedPackets.push_back(tempPacket);
+		}
 	}
 
 	_mutex.unlock();

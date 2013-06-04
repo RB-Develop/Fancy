@@ -3,14 +3,15 @@
 
 #include "Observer.h"
 
+#include "PacketHandler.h"
 #include "PlayerData.h"
 #include "WorldData.h"
-#include "LobbyData.h"
+#include "GameLobbyData.h"
 
 class Server : public Observer
 {
 public:
-	Server();
+	Server(PacketHandler*);
 	~Server();
 
 	void run();
@@ -18,8 +19,11 @@ public:
 	virtual void update(FancyPacket packet);
 private:
 	PlayerData* _playerData;
-	WorldData* _worldData;
-	LobbyData* _lobbyData;
+	GameLobbyData* _gameLobbyData;
+
+	PacketHandler* _packetHandler;
+
+	FancyPacket _responsePacket;
 };
 
 #endif

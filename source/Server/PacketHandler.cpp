@@ -15,6 +15,22 @@ PacketHandler::~PacketHandler()
 	_tcpHandler = NULL;
 }
 
+void PacketHandler::sendData(FancyPacket packet, string ipAddress, unsigned int protocol, unsigned short port)
+{
+	Packet sendPacket;
+	sendPacket<<packet;
+
+	switch(protocol)
+	{
+	case PROTOCL_UDP:
+		_udpHandler->sendData(&sendPacket, &IpAddress(ipAddress), port);
+		break;
+	case PROTOCOL_TCP:
+		_tcpHandler->sendData(&sendPacket, ipAddress);
+		break;
+	}
+}
+
 void PacketHandler::receiveData()
 {
 	receiveTcpData();
@@ -32,7 +48,6 @@ void PacketHandler::receiveTcpData()
 	for(list<Packet>::iterator it = tcpSerData.begin(); it != tcpSerData.end(); it++){
 		if((*it).getDataSize() > 0)
 		{
-			std::printf("Receiving \n");
 			FancyPacket tcpData;
 			(*it)>>tcpData;
 			notify(tcpData);
@@ -49,7 +64,7 @@ void PacketHandler::receiveUdpData()
 		delete udpSerData;
 		return;
 	}
-	std::printf("Receiving \n");
+
 	FancyPacket udpData;
 	*udpSerData>>udpData;
 

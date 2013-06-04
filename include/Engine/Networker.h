@@ -1,6 +1,7 @@
 #ifndef	FANCY_NETWORKER
 #define FANCY_NETWORKER
 
+#include <list>
 #include <SFML/Network.hpp>
 
 namespace fancy {
@@ -25,7 +26,7 @@ namespace fancy {
 			bool sendPacket(sf::Packet* packet, unsigned int protocol = PROTOCOL_UDP);
 
 			sf::Packet* receiveDataUdp();
-			sf::Packet* receiveDataTcp();
+			void receiveDataTcp();
 		private:		
 			enum Protocol
 			{
@@ -43,7 +44,9 @@ namespace fancy {
 			unsigned short _receivedFromPort;
 			sf::IpAddress _receivedFromAdress;
 
-			sf::Packet _receivedPacketTcp;
+			sf::Mutex _lock;
+
+			std::list<sf::Packet> _packets;
 
 			bool sendUdp(sf::Packet* packet);
 			bool sendTcp(sf::Packet* packet);

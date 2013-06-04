@@ -49,6 +49,9 @@ struct FancyPacket {
 	unsigned short port;
 	std::size_t p_listSize;
 	std::list<PlayerPacket> p_list;	
+	
+	// This variable is used only by the server.
+	sf::TcpSocket* tcpSocket;
 };
 
 /*

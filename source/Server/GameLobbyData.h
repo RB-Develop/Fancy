@@ -5,11 +5,11 @@
 
 #include <NetworkData.h>
 
-class LobbyData
+class GameLobbyData
 {
 public:
-	LobbyData();
-	virtual ~LobbyData();
+	GameLobbyData();
+	virtual ~GameLobbyData();
 
 	virtual void update();	
 private:

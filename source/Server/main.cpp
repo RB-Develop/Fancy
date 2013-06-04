@@ -7,17 +7,19 @@
 
 void acceptNewClients(TcpHandler* tcp)
 {
-	while(true)
+	while(true) 
 		tcp->acceptConnections();
 }
 
 int main()
 {	
-	Server* server = new Server();
 	TcpHandler* tcpHandler = new TcpHandler();
 	UdpHandler* udpHandler = new UdpHandler();
 
 	PacketHandler* packetHandler = new PacketHandler(udpHandler, tcpHandler);
+
+	Server* server = new Server(packetHandler);
+
 	packetHandler->attach(server);
 
 	sf::Thread acceptThread(&acceptNewClients, tcpHandler);
@@ -26,6 +28,7 @@ int main()
 
 	while(true)
 	{
+		tcpHandler->keepSocketsAlive();
 		packetHandler->receiveData();
 		server->run();
 	}

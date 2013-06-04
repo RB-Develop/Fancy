@@ -8,6 +8,8 @@ NetworkHandler::NetworkHandler() : _nullPacket()
 	_networker = new Networker();
 	_networker->openUdpSocket(0);
 	_networker->openTcpSocket(53000);
+
+	_tcpPacket = sf::Packet();
 }
 
 NetworkHandler::~NetworkHandler()
@@ -17,14 +19,16 @@ NetworkHandler::~NetworkHandler()
 
 void NetworkHandler::run()
 {
-	sf::Packet* packet = _networker->receiveDataUdp();
+	_networker->receiveDataUdp();
+	_networker->receiveDataTcp();
 
-	if(packet == NULL)
+	if(_tcpPacket.getDataSize() <= 0)
 	{
+		_tcpPacket.clear();
 		return;
 	}
 
-	*packet >> _receivedPacket;
+	_tcpPacket >> _receivedPacket;
 
 	for(std::list<PlayerPacket>::iterator i = _receivedPacket.p_list.begin(); i != _receivedPacket.p_list.end(); ++i)
 	{
@@ -33,7 +37,7 @@ void NetworkHandler::run()
 	onReceived();
 
 	_receivedPacket = _nullPacket;
-	packet->clear();
+	_tcpPacket.clear();
 }
 
 void NetworkHandler::setUserName(std::string userName)

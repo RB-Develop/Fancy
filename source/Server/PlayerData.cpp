@@ -2,43 +2,37 @@
 
 using namespace std;
 
-PlayerData::PlayerData()
+PlayerData::PlayerData() : _nullPacket()
 {
+
 }
 
 PlayerData::~PlayerData()
 {
+
 }
 
-void PlayerData::update()
+FancyPacket* PlayerData::addPlayer(Player* player)
 {
-}
+	FancyPacket* response = new FancyPacket;
 
-void PlayerData::handleRegisterRequest()
-{
-	addNewPlayer();
-	responseSucces();
-}
+	if(playerExists(player->getUserName()))
+	{
+		response->packet_type = REGISTER_FAIL;
+		return response;
+	}
 
-void PlayerData::responseFailure()
-{
-}
-
-void PlayerData::responseSucces()
-{
+	response->packet_type = REGISTER_SUCCES;
+	return response;
 }
 
 bool PlayerData::playerExists(string playerName)
 {
-	for(list<PlayerPacket>::iterator i=players.begin(); i!=players.end(); ++i)
+	for(list<Player*>::iterator i=players.begin(); i!=players.end(); ++i)
 	{
-		if((*i).userName == playerName) {
+		if((*i)->getUserName() == playerName) {
 			return true;
 		}
 	}
 	return false;
-}
-
-void PlayerData::addNewPlayer()
-{
 }

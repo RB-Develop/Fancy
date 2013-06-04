@@ -5,27 +5,22 @@
 
 #include <NetworkData.h>
 
+#include "Player.h"
+
 class PlayerData
 {
 public:
 	PlayerData();
 	virtual ~PlayerData();
 
-	virtual void update();
+	FancyPacket* addPlayer(Player*);
 private:
-	std::list<PlayerPacket> players;
+	std::list<Player*> players;
 
-	sf::Packet _serializedPacket;
 	FancyPacket _response;
 	const FancyPacket _nullPacket;
 
-	void handleRegisterRequest();
 	bool playerExists(std::string playerName);
-
-	void responseFailure();
-	void responseSucces();
-	void broadCastPlayerList();
-	void addNewPlayer();
 };
 
 #endif 

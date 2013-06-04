@@ -34,6 +34,12 @@
     <Filter Include="Source Files\SocketHandlers">
       <UniqueIdentifier>{649d219e-29f2-46a1-8fca-5ec6cb7e6210}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\DataObjects">
+      <UniqueIdentifier>{47c66b7b-9bfe-4bb6-8003-126eb58fc349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DataObjects">
+      <UniqueIdentifier>{158a4003-3173-4a7e-8d05-3233dd577cee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\Server\Subject.h">
@@ -46,9 +52,6 @@
       <Filter>Shared Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\Server\PlayerData.h">
-      <Filter>Header Files\Observers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\Server\LobbyData.h">
       <Filter>Header Files\Observers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\Server\TcpHandler.h">
@@ -64,6 +67,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\Server\WorldData.h">
+      <Filter>Header Files\Observers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Server\Player.h">
+      <Filter>Header Files\DataObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Server\GameLobbyData.h">
       <Filter>Header Files\Observers</Filter>
     </ClInclude>
   </ItemGroup>
@@ -83,9 +92,6 @@
     <ClCompile Include="..\..\source\Server\WorldData.cpp">
       <Filter>Source Files\Observers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\Server\LobbyData.cpp">
-      <Filter>Source Files\Observers</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\Server\TcpHandler.cpp">
       <Filter>Source Files\SocketHandlers</Filter>
     </ClCompile>
@@ -97,6 +103,12 @@
     </ClCompile>
     <ClCompile Include="..\..\source\Server\PacketHandler.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Server\Player.cpp">
+      <Filter>Source Files\DataObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Server\GameLobbyData.cpp">
+      <Filter>Source Files\Observers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

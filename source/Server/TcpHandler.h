@@ -30,6 +30,7 @@ private:
 	sf::Packet* _nullPacket;
 	std::list<sf::Packet> _serializedPackets;
 
+	sf::Packet tempPacket;
 	sf::TcpListener _listener;
 	std::list<sf::TcpSocket*> _connectedClients;	
 };

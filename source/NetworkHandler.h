@@ -32,6 +32,8 @@ private:
 	const FancyPacket _nullPacket;
 
 	sf::Packet _serializedPacket;
+	sf::Packet _emptySfPacket;
+	sf::Packet _tcpPacket;
 
 	std::list<fancy::scene::Scene*> _listeners;
 

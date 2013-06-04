@@ -17,6 +17,7 @@ public:
 	PacketHandler(UdpHandler*, TcpHandler*);
 	virtual ~PacketHandler();
 	
+	void sendData(FancyPacket packet, std::string ipAddress, unsigned int protocol, unsigned short port);
 	void receiveData();
 private:
 	UdpHandler* _udpHandler;
