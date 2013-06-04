@@ -8,7 +8,10 @@
 void acceptNewClients(TcpHandler* tcp)
 {
 	while(true) 
+	{
 		tcp->acceptConnections();
+		Sleep(10);
+	}
 }
 
 int main()
@@ -36,6 +39,8 @@ int main()
 
 		packetHandler->receiveData();
 		server->run();
+
+		Sleep(5);
 	}
 
 	return 0;
