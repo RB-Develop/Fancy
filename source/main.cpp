@@ -1,4 +1,5 @@
 #include <iostream>
+#include <windows.h>
 
 #include <Engine/FancyEngine.h>
 
@@ -11,17 +12,10 @@ using namespace fancy::network;
 
 void runNetwork(NetworkHandler* networkHandler)
 {	
-	clock_t startTime = clock();
-	float secondsPassed = 0;
-
 	while(true)
 	{
-		secondsPassed = (float)(clock() - startTime)/CLOCKS_PER_SEC;	
-		if(secondsPassed >= 0.5f)
-		{
-			networkHandler->run();
-			startTime = clock();
-		}
+		networkHandler->run();
+		Sleep(10);
 	}
 }
 
